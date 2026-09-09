@@ -3,7 +3,7 @@
   "short_name": "Gurkha Labs",
   "icons": [
     {
-      "src": "/gl-monogram-512.png",
+      "src": "assets/gl-monogram-512.png",
       "sizes": "512x512",
       "type": "image/png"
     }
