@@ -901,10 +901,55 @@ section[aria-label="Engineering capabilities"]{background:#fff;padding-top:50px}
 .hero-copy .reveal.visible:nth-child(1){animation:gl-rise .55s cubic-bezier(.16,1,.3,1) both}
 .hero-copy .reveal.visible:nth-child(2){animation:gl-rise .65s .08s cubic-bezier(.16,1,.3,1) both}
 .hero-copy .reveal.visible:nth-child(3){animation:gl-rise .65s .16s cubic-bezier(.16,1,.3,1) both}
+.hero-art>img{transform-origin:50% 52%}
+@keyframes gl-float{0%,100%{transform:translate3d(0,0,0) rotate(0deg)}50%{transform:translate3d(0,-12px,0) rotate(.45deg)}}
+@keyframes gl-soft-sheen{0%{transform:translateX(-120%) skewX(-18deg);opacity:0}22%{opacity:.42}48%,100%{transform:translateX(150%) skewX(-18deg);opacity:0}}
+@keyframes gl-feed-rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@keyframes gl-logo-drift{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes gl-menu-in{from{opacity:0;transform:translateY(-10px) scale(.985)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes gl-menu-out{from{opacity:1;transform:translateY(0) scale(1)}to{opacity:0;transform:translateY(-8px) scale(.985)}}
+@keyframes gl-button-glint{0%{transform:translateX(-140%) skewX(-18deg);opacity:0}28%{opacity:.5}100%{transform:translateX(170%) skewX(-18deg);opacity:0}}
+@keyframes gl-button-arrow{0%,100%{transform:translateX(0)}50%{transform:translateX(4px)}}
+@keyframes gl-start-arrow{from{transform:rotate(0deg)}to{transform:rotate(180deg)}}
+@keyframes gl-start-bg{from{width:35px;height:35px;background:#d9d9d9}to{width:324px;height:116px;background:#b6c5d1}}
+@keyframes gl-compact-bg{from{width:35px;height:35px;background:#d9d9d9}to{width:220px;height:88px;background:#b6c5d1}}
+@media (prefers-reduced-motion:no-preference){
+  .hero-art.visible>img{animation:gl-float 7s ease-in-out .7s infinite}
+  .studio-panel,.logo-band,.feed-card,.cta-panel{position:relative}
+  .studio-panel::after,.logo-band::after,.feed-card::after,.cta-panel::after{
+    content:"";position:absolute;inset:-20% auto -20% 0;width:34%;pointer-events:none;
+    background:linear-gradient(90deg,transparent,rgba(255,255,255,.38),transparent);
+    animation:gl-soft-sheen 5.8s cubic-bezier(.16,1,.3,1) infinite;
+  }
+  .logo-band::after,.feed-card::after{background:linear-gradient(90deg,transparent,rgba(255,255,255,.14),transparent)}
+  .cta-panel::after{animation-delay:1.3s}
+  .reveal{transition-delay:var(--reveal-delay,0ms)}
+  .feed-line{opacity:0;animation:gl-feed-rise .45s cubic-bezier(.16,1,.3,1) forwards}
+  .feed-line:nth-child(2){animation-delay:.08s}
+  .feed-line:nth-child(3){animation-delay:.18s}
+  .feed-line:nth-child(4){animation-delay:.28s}
+  .feed-line:nth-child(5){animation-delay:.38s}
+  .feed-line:nth-child(6){animation-delay:.48s}
+  .feed-line:nth-child(7){animation-delay:.58s}
+  .feed-line:nth-child(8){animation-delay:.68s}
+  .logo-band-track{animation:gl-logo-drift 28s linear infinite}
+  .logo-band:hover .logo-band-track,.core-stack-list:hover .core-stack-track{animation-play-state:paused}
+  .cap-panel:not([hidden]) .cap-mark{animation:gl-rise .38s cubic-bezier(.16,1,.3,1) both}
+  .cap-panel:not([hidden]) .cap-mark:nth-child(2){animation-delay:.06s}
+  .cap-panel:not([hidden]) .cap-mark:nth-child(3){animation-delay:.12s}
+  .nav-mobile-menu.is-opening{animation:gl-menu-in .24s cubic-bezier(.16,1,.3,1) both;transform-origin:top center}
+  .nav-mobile-menu.is-closing{animation:gl-menu-out .18s cubic-bezier(.7,0,.84,0) both;transform-origin:top center}
+  .button:hover::before,.explore-all:hover::before,.project-link:hover::before{animation:gl-button-glint .72s cubic-bezier(.16,1,.3,1) both}
+  .button:hover svg,.explore-all:hover svg,.project-link:hover svg{animation:gl-button-arrow .55s cubic-bezier(.16,1,.3,1)}
+  .hero-actions .button-primary:hover::after{animation:gl-start-bg .42s cubic-bezier(.16,1,.3,1) both}
+  .hero-actions .button-primary:hover svg{animation:gl-start-arrow .42s cubic-bezier(.16,1,.3,1) both}
+  #lets-talk-btn:hover::after,.nav-mobile-cta .button-primary.compact:hover::after{animation:gl-compact-bg .42s cubic-bezier(.16,1,.3,1) both}
+  #lets-talk-btn:hover svg,.nav-mobile-cta .button-primary.compact:hover svg{animation:gl-start-arrow .42s cubic-bezier(.16,1,.3,1) both}
+}
 /* buttons + cards: coherent micro-interaction language */
 .button{transition:transform .18s cubic-bezier(.16,1,.3,1),filter .18s cubic-bezier(.16,1,.3,1),background-color .18s ease}
-.button:hover{transform:translateY(-1px);filter:brightness(1.05)}
-.button:active{transform:translateY(0)}
+.button:hover,.explore-all:hover,.project-link:hover{transform:translateY(-1px);filter:brightness(1.05)}
+.button:active,.explore-all:active,.project-link:active{transform:translateY(0)}
 .button svg{transition:transform .18s cubic-bezier(.16,1,.3,1)}
 .button:hover svg{transform:translate(2px,-2px)}
 .feature-card,.shipped-card,.principle-card{transition:transform .25s cubic-bezier(.16,1,.3,1),box-shadow .25s ease,border-color .25s ease}
@@ -931,10 +976,60 @@ section[aria-label="Engineering capabilities"]{overflow-x:clip}
 /* responsive type guard: 48px headings step down gracefully */
 @media(max-width:640px){
   .section-heading h2,.cap-title{font-size:clamp(1.7rem,8vw,2.125rem);line-height:1.08}
+  .hero-actions{width:100%;align-items:stretch}
+  .hero-actions .button{flex:1 1 100%;min-width:0}
 }
+.hero-title{font-family:"Segoe UI",var(--font-display),system-ui,sans-serif;font-size:clamp(3rem,4.45vw,4rem);line-height:1.14;letter-spacing:0;color:#144468}
+.hero-lead{font-family:"Segoe UI",var(--font-sans),system-ui,sans-serif;font-size:1rem;line-height:1.94;font-weight:600;color:#446987}
+.hero-actions{gap:17px}
+.hero-actions .button{min-width:196px;min-height:55px;padding-inline:15px;font-size:1.125rem;line-height:1.35}
+.button-primary{background:#0c253a;border-radius:0 15px 0 44px;clip-path:none}
+.button-secondary{border-color:#446987;border-radius:0 44px 0 15px;color:#0f304b}
+.button,.explore-all,.project-link{position:relative;overflow:hidden;isolation:isolate}
+.button::before,.explore-all::before,.project-link::before{content:"";position:absolute;inset:-35% auto -35% 0;width:38%;pointer-events:none;background:linear-gradient(90deg,transparent,rgba(255,255,255,.5),transparent);opacity:0;z-index:1}
+.hero-actions .button-primary{width:196px;height:55px;padding:15px;gap:5px;flex:none;isolation:isolate;transition:transform .18s cubic-bezier(.16,1,.3,1),filter .18s cubic-bezier(.16,1,.3,1),box-shadow .18s ease,background-color 0s}
+.hero-actions .button-primary::before{display:none}
+.hero-actions .button-primary::after{content:"";position:absolute;width:35px;height:35px;left:-45px;top:-35px;background:#d9d9d9;border-radius:9999px;pointer-events:none;z-index:0}
+.hero-actions .button-primary .button-label{position:relative;z-index:2;width:107px;height:21px;font-family:"Segoe UI",var(--font-sans),system-ui,sans-serif;font-weight:700;font-size:16px;line-height:21px;color:#e8ecf0;white-space:nowrap;transition:width .42s cubic-bezier(.16,1,.3,1),height .42s cubic-bezier(.16,1,.3,1),font-size .42s cubic-bezier(.16,1,.3,1),line-height .42s cubic-bezier(.16,1,.3,1),color .42s ease}
+.hero-actions .button-primary svg{position:relative;z-index:2;width:25px;height:25px;flex:none;transform:rotate(0deg);transform-origin:center;color:#e8ecf0;transition:color .42s ease,transform .42s cubic-bezier(.16,1,.3,1)}
+.hero-actions .button-primary:hover{background:#b6c5d1;box-shadow:0 16px 34px -18px rgba(16,56,82,.42)}
+.hero-actions .button-primary:hover .button-label{width:121px;height:24px;font-size:18px;line-height:24px;color:#0f304b}
+.hero-actions .button-primary:hover svg{color:#0f304b;transform:rotate(180deg)}
+.hero-actions .button-secondary{width:196px;height:51px;min-height:51px;padding:15px;border-color:#446987;border-radius:0 44px 0 15px;font-family:"Segoe UI",var(--font-sans),system-ui,sans-serif;font-weight:600;font-size:18px;line-height:24px;color:#0f304b;background:transparent;flex:none}
+.hero-actions .button-secondary::before{display:none}
+.button-primary.compact,#lets-talk-btn,.nav-mobile-cta .button-primary.compact{width:136px;height:35px;min-height:35px;padding:5px 19px;gap:5px;flex:none;border-radius:0 56px 0 86px;background:#0c253a;isolation:isolate;overflow:hidden;font-family:"Segoe UI",var(--font-sans),system-ui,sans-serif;font-weight:600;font-size:18px;line-height:24px;color:#e8ecf0;transition:transform .18s cubic-bezier(.16,1,.3,1),filter .18s cubic-bezier(.16,1,.3,1),box-shadow .18s ease,background-color 0s}
+#lets-talk-btn::before,.nav-mobile-cta .button-primary.compact::before{display:none}
+#lets-talk-btn::after,.nav-mobile-cta .button-primary.compact::after{content:"";position:absolute;width:35px;height:35px;left:-45px;top:-35px;background:#d9d9d9;border-radius:9999px;pointer-events:none;z-index:0}
+#lets-talk-btn .button-label,.nav-mobile-cta .button-primary.compact .button-label{position:relative;z-index:2;width:73px;height:24px;font-family:"Segoe UI",var(--font-sans),system-ui,sans-serif;font-weight:600;font-size:18px;line-height:24px;color:#e8ecf0;white-space:nowrap;transition:color .42s ease}
+#lets-talk-btn svg,.nav-mobile-cta .button-primary.compact svg{position:relative;z-index:2;width:25px;height:25px;flex:none;transform:rotate(0deg);transform-origin:center;color:#e8ecf0;transition:color .42s ease,transform .42s cubic-bezier(.16,1,.3,1)}
+#lets-talk-btn:hover,.nav-mobile-cta .button-primary.compact:hover{background:#b6c5d1;box-shadow:0 14px 28px -18px rgba(16,56,82,.5)}
+#lets-talk-btn:hover .button-label,.nav-mobile-cta .button-primary.compact:hover .button-label{color:#0f304b}
+#lets-talk-btn:hover svg,.nav-mobile-cta .button-primary.compact:hover svg{color:#0f304b;transform:rotate(180deg)}
+.button-primary:hover{background:#154469;box-shadow:0 16px 34px -18px rgba(12,37,58,.72)}
+.hero-actions .button-secondary:hover{background:#b6c5d1;border-color:#446987;color:#0f304b;box-shadow:0 14px 30px -22px rgba(16,56,82,.55)}
+.button-secondary:hover{background:#e8ecf0;border-color:#154469;color:#154469;box-shadow:0 14px 30px -22px rgba(16,56,82,.55)}
+.button:active,.explore-all:active,.project-link:active{transform:translateY(0) scale(.975)}
+.studio-stats dt{font-family:"Segoe UI",var(--font-display),system-ui,sans-serif;font-size:2.25rem;line-height:.8;font-weight:600;color:#144468}
+.studio-stats dd{color:#446987}
+.footer-location{line-height:1.65}
+.hero-art{aspect-ratio:585/389}
+.hero-art>img{width:100%;height:100%;max-width:585px;object-fit:contain;filter:drop-shadow(0 28px 42px rgba(16,56,82,.12))}
+.project-art,.principle-art{display:flex;align-items:center;justify-content:center;aspect-ratio:1/1;background:#f4f5f7;border-radius:20px;overflow:hidden}
+.project-art>img,.principle-art>img{width:min(100%,256px);height:min(100%,256px);max-height:none;object-fit:contain;transition:transform .45s cubic-bezier(.16,1,.3,1)}
+.project-card:hover .project-art>img,.principle-card:hover .principle-art>img{transform:translateY(-4px) scale(1.035)}
+.shipped-media img{width:100%;height:100%;object-fit:cover}
+.team-photo{object-position:center top}
+.logo-band-track{gap:70px}
+.logo-band-track .asset-slot{display:flex;align-items:center;justify-content:center}
+.logo-band-track .asset-slot[data-label$="mysecondteacher.png"]{width:100px;height:80px}
+.logo-band-track .asset-slot[data-label$="zenledger.png"],.logo-band-track .asset-slot[data-label$="jelajah-ilmu.png"]{width:171px;height:63px}
+.logo-band-track .asset-slot[data-label$="bats.png"]{width:191px;height:87px}
+.logo-band-track .asset-slot[data-label$="investready.png"]{width:170px;height:81px}
+.logo-band-track .asset-slot>img{width:100%;height:100%;max-height:none;object-fit:contain}
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
   .reveal{opacity:1;transform:none}
+  .hero-art>img,.logo-band-track,.core-stack-track,.feed-line,.project-art>img,.principle-art>img{transform:none!important;opacity:1!important}
   .logo-band-track,.core-stack-track{animation:none!important}
 }
 
@@ -947,7 +1042,7 @@ section[aria-label="Engineering capabilities"]{overflow-x:clip}
 
 
 
-<a href="#team" class="nav-link">Team</a></nav><div class="hidden md:flex"><a href="#contact" id="lets-talk-btn" class="button button-primary compact">Let&#x27;s Talk<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 256 256" class="size-4"><path d="M224.49,136.49l-72,72a12,12,0,0,1-17-17L187,140H40a12,12,0,0,1,0-24H187L135.51,64.48a12,12,0,0,1,17-17l72,72A12,12,0,0,1,224.49,136.49Z"></path></svg></a></div><button class="nav-toggle md:hidden" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Toggle navigation"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 256 256" class="size-5"><path d="M228,128a12,12,0,0,1-12,12H40a12,12,0,0,1,0-24H216A12,12,0,0,1,228,128ZM40,76H216a12,12,0,0,0,0-24H40a12,12,0,0,0,0,24ZM216,180H40a12,12,0,0,0,0,24H216a12,12,0,0,0,0-24Z"></path></svg></button></div></div></header><section class="hero-shell"><div class="container-shell hero-grid"><div class="hero-copy"><div class="reveal"><div class="pill pill-tech"><span class="status-dot" aria-hidden="true"></span><span class="pill-tech-text">kathmandu_studio<span class="pill-tech-sep">//</span>available_worldwide<span class="blink-cursor" aria-hidden="true">_</span></span></div></div><div class="reveal"><div class="flex flex-col gap-6"><h1 class="hero-title">We build the systems that <span class="text-accent">move businesses forward.</span></h1><p class="hero-lead">Gurkha Labs is a senior-led software studio designing and engineering web, mobile, AI, and data-intensive systems for teams that need reliable delivery.</p></div></div><div class="reveal"><div class="hero-actions"><a href="#contact" class="button button-primary">Start a Project<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 256 256" class="size-4"><path d="M224.49,136.49l-72,72a12,12,0,0,1-17-17L187,140H40a12,12,0,0,1,0-24H187L135.51,64.48a12,12,0,0,1,17-17l72,72A12,12,0,0,1,224.49,136.49Z"></path></svg></a><a href="#work" class="button button-secondary">Explore Our Work</a></div></div></div><div class="asset-slot reveal hero-art" data-label="assets/hero-illustration.svg"><img src="assets/hero-illustration.svg" alt="Team reviewing product metrics together" loading="eager" fetchpriority="high" decoding="async" width="585" height="390"/></div></div><div class="container-shell" style="padding-bottom:5rem"><div class="w-full reveal"><div class="studio-panel" aria-label="Gurkha Labs delivery focus"><div class="studio-panel-brand"><div><img alt="Gurkha Labs" loading="lazy" width="827" height="246" decoding="async" class="h-auto w-full object-contain" style="color:transparent" src="assets/gurkha-logo.png"/><p class="studio-panel-tagline">Product Design and Engineering Studio</p></div><dl class="studio-stats"><div><dt>9+</dt><dd>Combined experience</dd></div><div><dt>50+</dt><dd>Exchange &amp; blockchain integrations</dd></div><div><dt>5+ yrs</dt><dd>On-chain data in production</dd></div></dl></div><div><h2 class="studio-panel-head">What we do</h2><div class="studio-panel-grid"><article class="studio-focus-card"><span class="studio-focus-num">01</span><h3>Product Strategy</h3><p>Shape the right scope before code, with tradeoffs visible early.</p></article><article class="studio-focus-card"><span class="studio-focus-num">02</span><h3>Interface Design</h3><p>Design clear paths, real states, and screens people can scan quickly.</p></article><article class="studio-focus-card"><span class="studio-focus-num">03</span><h3>Production Engineering</h3><p>Build maintainable systems with direct founder ownership.</p></article></div></div></div></div></div></section><section class="section-pad" aria-label="Companies our engineers have built and scaled" style="padding-top:0;padding-bottom:0"><div class="container-shell"><div class="reveal"><div class="logo-band"><p class="logo-band-label">Built by engineers who have shipped real systems</p><div class="logo-band-marquee"><div class="logo-band-track" aria-hidden="false"><div class="asset-slot " data-label="assets/mysecondteacher.png"><img src="assets/mysecondteacher.png" alt="MySecondTeacher" loading="lazy" decoding="async" width="170" height="64"/></div><div class="asset-slot " data-label="assets/zenledger.png"><img src="assets/zenledger.png" alt="ZenLedger" loading="lazy" decoding="async" width="170" height="64"/></div><div class="asset-slot " data-label="assets/jelajah-ilmu.png"><img src="assets/jelajah-ilmu.png" alt="Jelajah Ilmu" loading="lazy" decoding="async" width="170" height="64"/></div><div class="asset-slot " data-label="assets/bats.png"><img src="assets/bats.png" alt="BATS" loading="lazy" decoding="async" width="170" height="64"/></div><div class="asset-slot " data-label="assets/mysecondteacher.png"><img src="assets/mysecondteacher.png" aria-hidden="true" alt="" loading="lazy" decoding="async"/></div><div class="asset-slot " data-label="assets/zenledger.png"><img src="assets/zenledger.png" aria-hidden="true" alt="" loading="lazy" decoding="async"/></div><div class="asset-slot " data-label="assets/jelajah-ilmu.png"><img src="assets/jelajah-ilmu.png" aria-hidden="true" alt="" loading="lazy" decoding="async"/></div><div class="asset-slot " data-label="assets/bats.png"><img src="assets/bats.png" aria-hidden="true" alt="" loading="lazy" decoding="async"/></div></div></div></div></div></div></div></section><section class="section-pad" aria-label="From founding engineer to Series B" style="padding-top:60px;padding-bottom:0"><div class="container-shell stage-shell"><div class="reveal"><div class="stage-band"><div class="stage-copy"><p class="eyebrow">Stage experience</p><h2>Founding engineer to Series B.</h2><p>Most studios arrive after product-market fit. Ours have started at zero &mdash; first commit, first hire, first architecture &mdash; and stayed through Seed, Series B, and mass distribution.</p></div><ol class="stage-track"><li><span class="stage-dot" aria-hidden="true"></span><strong>Zero to MVP</strong><span>First architecture, first hires</span></li><li><span class="stage-dot" aria-hidden="true"></span><strong>Seed</strong><span>Scale without rewrites</span></li><li><span class="stage-dot" aria-hidden="true"></span><strong>Series B</strong><span>Reliability under real load</span></li><li><span class="stage-dot" aria-hidden="true"></span><strong>Distribution</strong><span>Country-scale rollout</span></li></ol></div></div><div class="asset-slot stage-art" data-label="assets/founding-engineer.png"><img src="assets/founding-engineer.png" alt="Engineer working on a laptop" loading="lazy" decoding="async"/></div></div></section>
+<a href="#team" class="nav-link">Team</a></nav><div class="hidden md:flex"><a href="#contact" id="lets-talk-btn" class="button button-primary compact"><span class="button-label">Let&#x27;s Talk</span><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 256 256" class="size-4"><path d="M224.49,136.49l-72,72a12,12,0,0,1-17-17L187,140H40a12,12,0,0,1,0-24H187L135.51,64.48a12,12,0,0,1,17-17l72,72A12,12,0,0,1,224.49,136.49Z"></path></svg></a></div><button class="nav-toggle md:hidden" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Toggle navigation"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 256 256" class="size-5"><path d="M228,128a12,12,0,0,1-12,12H40a12,12,0,0,1,0-24H216A12,12,0,0,1,228,128ZM40,76H216a12,12,0,0,0,0-24H40a12,12,0,0,0,0,24ZM216,180H40a12,12,0,0,0,0,24H216a12,12,0,0,0,0-24Z"></path></svg></button></div></div></header><section class="hero-shell"><div class="container-shell hero-grid"><div class="hero-copy"><div class="reveal"><div class="pill pill-tech"><span class="status-dot" aria-hidden="true"></span><span class="pill-tech-text">kathmandu_studio<span class="pill-tech-sep">//</span>available_worldwide<span class="blink-cursor" aria-hidden="true">_</span></span></div></div><div class="reveal"><div class="flex flex-col gap-6"><h1 class="hero-title">Digital products built to move business.</h1><p class="hero-lead">Gurkha Labs is a senior-led software studio designing and engineering web, mobile, and AI systems for teams that need reliable delivery.</p></div></div><div class="reveal"><div class="hero-actions"><a href="#contact" class="button button-primary"><span class="button-label">Start a Project</span><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 256 256" class="size-4"><path d="M224.49,136.49l-72,72a12,12,0,0,1-17-17L187,140H40a12,12,0,0,1,0-24H187L135.51,64.48a12,12,0,0,1,17-17l72,72A12,12,0,0,1,224.49,136.49Z"></path></svg></a><a href="#work" class="button button-secondary">Explore Our Work</a></div></div></div><div class="asset-slot reveal hero-art" data-label="assets/hero-illustration.svg"><img src="assets/hero-illustration.svg" alt="Team reviewing product metrics together" loading="eager" fetchpriority="high" decoding="async" width="585" height="390"/></div></div><div class="container-shell" style="padding-bottom:5rem"><div class="w-full reveal"><div class="studio-panel" aria-label="Gurkha Labs delivery focus"><div class="studio-panel-brand"><div><img alt="Gurkha Labs" loading="lazy" width="827" height="246" decoding="async" class="h-auto w-full object-contain" style="color:transparent" src="assets/gurkha-logo.png"/><p class="studio-panel-tagline">Product Design and Engineering Studio</p></div><dl class="studio-stats"><div><dt>10+yrs</dt><dd>Combined experience</dd></div><div><dt>50+</dt><dd>Blockchain integrations</dd></div><div><dt>5+yrs</dt><dd>On-chain data live</dd></div></dl></div><div><h2 class="studio-panel-head">What we do</h2><div class="studio-panel-grid"><article class="studio-focus-card"><span class="studio-focus-num">01</span><h3>Product Strategy</h3><p>Shape the right scope before code, with tradeoffs visible early.</p></article><article class="studio-focus-card"><span class="studio-focus-num">02</span><h3>Interface Design</h3><p>Design clear paths, real states, and screens people can scan quickly.</p></article><article class="studio-focus-card"><span class="studio-focus-num">03</span><h3>Production Engineering</h3><p>Build maintainable systems with direct founder ownership.</p></article></div></div></div></div></div></section><section class="section-pad" aria-label="Companies our engineers have built and scaled" style="padding-top:0;padding-bottom:0"><div class="container-shell"><div class="reveal"><div class="logo-band"><p class="logo-band-label">Built by engineers who have shipped real systems</p><div class="logo-band-marquee"><div class="logo-band-track" aria-hidden="false"><div class="asset-slot " data-label="assets/mysecondteacher.png"><img src="assets/mysecondteacher.png" alt="MySecondTeacher" loading="lazy" decoding="async" width="170" height="64"/></div><div class="asset-slot " data-label="assets/zenledger.png"><img src="assets/zenledger.png" alt="ZenLedger" loading="lazy" decoding="async" width="170" height="64"/></div><div class="asset-slot " data-label="assets/jelajah-ilmu.png"><img src="assets/jelajah-ilmu.png" alt="Jelajah Ilmu" loading="lazy" decoding="async" width="170" height="64"/></div><div class="asset-slot " data-label="assets/bats.png"><img src="assets/bats.png" alt="BATS" loading="lazy" decoding="async" width="170" height="64"/></div><div class="asset-slot " data-label="assets/investready.png"><img src="assets/investready.png" alt="InvestReady" loading="lazy" decoding="async" width="170" height="81"/></div><div class="asset-slot " data-label="assets/mysecondteacher.png"><img src="assets/mysecondteacher.png" aria-hidden="true" alt="" loading="lazy" decoding="async"/></div><div class="asset-slot " data-label="assets/zenledger.png"><img src="assets/zenledger.png" aria-hidden="true" alt="" loading="lazy" decoding="async"/></div><div class="asset-slot " data-label="assets/jelajah-ilmu.png"><img src="assets/jelajah-ilmu.png" aria-hidden="true" alt="" loading="lazy" decoding="async"/></div><div class="asset-slot " data-label="assets/bats.png"><img src="assets/bats.png" aria-hidden="true" alt="" loading="lazy" decoding="async"/></div><div class="asset-slot " data-label="assets/investready.png"><img src="assets/investready.png" aria-hidden="true" alt="" loading="lazy" decoding="async"/></div></div></div></div></div></div></div></section><section class="section-pad" aria-label="From founding engineer to Series B" style="padding-top:60px;padding-bottom:0"><div class="container-shell stage-shell"><div class="reveal"><div class="stage-band"><div class="stage-copy"><p class="eyebrow">Stage experience</p><h2>Founding engineer to Series B.</h2><p>Most studios arrive after product-market fit. Ours have started at zero &mdash; first commit, first hire, first architecture &mdash; and stayed through Seed, Series B, and mass distribution.</p></div><ol class="stage-track"><li><span class="stage-dot" aria-hidden="true"></span><strong>Zero to MVP</strong><span>First architecture, first hires</span></li><li><span class="stage-dot" aria-hidden="true"></span><strong>Seed</strong><span>Scale without rewrites</span></li><li><span class="stage-dot" aria-hidden="true"></span><strong>Series B</strong><span>Reliability under real load</span></li><li><span class="stage-dot" aria-hidden="true"></span><strong>Distribution</strong><span>Country-scale rollout</span></li></ol></div></div><div class="asset-slot stage-art" data-label="assets/founding-engineer.png"><img src="assets/founding-engineer.png" alt="Engineer working on a laptop" loading="lazy" decoding="async"/></div></div></section>
 
 
 
@@ -969,7 +1064,7 @@ section[aria-label="Engineering capabilities"]{overflow-x:clip}
         <img src="assets/gurkha-logo.png" alt="Gurkha Labs" />
       </a>
       <p class="footer-tagline">Senior-led software studio building web, mobile &amp; AI products.</p>
-      <p class="footer-location">Kathmandu, Nepal · Serving clients worldwide</p>
+      <p class="footer-location">Kathmandu, Nepal · Serving clients worldwide<br>Kapan, Kathmandu, Nepal</p>
     </div>
 
     <div class="footer-links">
@@ -999,6 +1094,15 @@ section[aria-label="Engineering capabilities"]{overflow-x:clip}
 (function(){
   // Reveal on scroll
   var els = document.querySelectorAll('.reveal');
+  els.forEach(function(el){
+    var parent = el.parentElement;
+    if (!parent) return;
+    var group = Array.prototype.filter.call(parent.children, function(child){
+      return child.classList && child.classList.contains('reveal');
+    });
+    var index = group.indexOf(el);
+    if (index > 0) el.style.setProperty('--reveal-delay', Math.min(index * 70, 280) + 'ms');
+  });
   var io = new IntersectionObserver(function(entries){
     entries.forEach(function(e){
       if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); }
@@ -1055,17 +1159,28 @@ section[aria-label="Engineering capabilities"]{overflow-x:clip}
     if (ctaWrap){
       ctaWrap.style.cssText = 'margin-top:14px;';
       var ctaEl = ctaWrap.querySelector('.button');
-      if (ctaEl) ctaEl.style.cssText += 'width:100%;justify-content:flex-start;display:flex;';
+      if (ctaEl) ctaEl.style.cssText += 'justify-content:center;display:flex;';
     }
 
+    var closeTimer = null;
+    var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     function closeMenu(){
-      menu.style.display = 'none';
+      if (closeTimer) window.clearTimeout(closeTimer);
+      menu.classList.remove('is-opening');
+      menu.classList.add('is-closing');
       toggle.setAttribute('aria-expanded', 'false');
       document.body.style.overflow = '';
       if (toggleIcon) toggleIcon.setAttribute('d', hamburgerPath);
+      closeTimer = window.setTimeout(function(){
+        menu.style.display = 'none';
+        menu.classList.remove('is-closing');
+      }, reduceMotion ? 0 : 180);
     }
     function openMenu(){
+      if (closeTimer) window.clearTimeout(closeTimer);
       menu.style.display = 'flex';
+      menu.classList.remove('is-closing');
+      menu.classList.add('is-opening');
       toggle.setAttribute('aria-expanded', 'true');
       document.body.style.overflow = 'hidden';
       if (toggleIcon) toggleIcon.setAttribute('d', closePath);
