@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script>document.documentElement.classList.add("js");</script>
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-BWRFT81BG3"></script>
   <script>
@@ -96,14 +97,12 @@
     border-radius:8px;
     background:rgba(255,255,255,.96);
   }
-/* Remove accidental top margins inside the hero wrapper */
-.hero-shell > *, .hero-container > *, .hero-section > * {
-    margin-top: 0;
+  .hero-shell {
+    padding-top: 5.5rem; /* Adjust this value down from 7rem to close the gap */
 }
 
-/* Force the hero container to sit right below the fixed header */
 .hero-shell {
-    padding-top: 2rem !important;
+    padding-top: clamp(5rem, 8vw, 6rem);
 }
   .footer-logo img{
     width:auto;
@@ -1057,6 +1056,360 @@ section[aria-label="Engineering capabilities"]{overflow-x:clip}
 
 
 </style>
+
+<style id="final-responsive-polish">
+/* =========================================================
+   FINAL RESPONSIVE / LAYOUT POLISH
+   Mobile: <= 767px | Tablet: 768-1023px | Desktop: >=1024px
+   ========================================================= */
+
+/* Prevent accidental double horizontal padding from the earlier patch. */
+.container-shell{
+  width:100%;
+  max-width:80rem;
+  margin-inline:auto;
+  padding-inline:clamp(1rem,4vw,2.5rem);
+}
+.hero-shell,.site-header{padding-left:0;padding-right:0;}
+
+/* Reveal animation must never create a blank page if JS/IntersectionObserver fails. */
+.reveal{opacity:1;transform:none;visibility:visible;}
+.js .reveal{opacity:0;transform:translateY(18px);}
+.js .reveal.visible{opacity:1;transform:translateY(0);}
+@media(prefers-reduced-motion:reduce){
+  .js .reveal,.js .reveal.visible{opacity:1;transform:none;}
+}
+
+/* Header: keep the navigation inside the viewport at every width. */
+.site-header{width:100%;}
+.site-header .container-shell{padding-top:0;}
+.nav-bar{width:100%;min-width:0;}
+.nav-bar > a{min-width:0;}
+.nav-bar > a img{max-width:100%;height:auto;}
+
+/* Mobile menu must start below the actual sticky header, not through it. */
+.nav-mobile-menu{top:calc(4.5rem + 12px)!important;left:1rem!important;right:1rem!important;width:auto!important;}
+@media(min-width:640px) and (max-width:767px){
+  .nav-mobile-menu{top:calc(5rem + 12px)!important;}
+}
+@media(max-width:767px){
+  .site-header{top:8px;}
+  .nav-bar{height:4.5rem;padding-inline:.75rem;gap:.65rem;}
+  .nav-bar > a img{max-height:2.65rem;width:auto;}
+  .nav-toggle{flex:0 0 2.5rem;}
+}
+
+/* Hero: never let the illustration dictate the page width. */
+.hero-grid{width:100%;min-width:0;}
+.hero-copy,.hero-art{min-width:0;}
+.hero-art{width:100%;}
+.hero-art>img{display:block;width:100%;height:100%;max-width:585px;margin-inline:auto;object-fit:contain;}
+.hero-title,.hero-lead{overflow-wrap:anywhere;}
+@media(max-width:767px){
+  .hero-grid{padding-top:3rem;padding-bottom:2.5rem;gap:1.75rem;}
+  .hero-copy{gap:1.2rem;}
+  .hero-title{font-size:clamp(2.45rem,11vw,3.15rem);line-height:1.08;}
+  .hero-lead{font-size:.98rem;line-height:1.7;}
+  .hero-actions{gap:.7rem;width:100%;}
+  .hero-actions .button-primary,
+  .hero-actions .button-secondary{width:100%;min-width:0;max-width:100%;}
+}
+@media(min-width:768px) and (max-width:1023px){
+  .hero-grid{gap:2rem;padding-top:4rem;padding-bottom:3rem;}
+  .hero-art{max-width:585px;margin-inline:auto;}
+  .hero-title{font-size:clamp(2.7rem,6vw,3.8rem);}
+}
+
+/* General text rhythm: avoid cramped one-line headings on narrow screens. */
+.section-heading{min-width:0;}
+.section-heading h2{max-width:100%;overflow-wrap:anywhere;}
+.section-heading>p:last-child{max-width:42rem;}
+@media(max-width:767px){
+  .section-pad{padding-block:4rem;}
+  .section-heading{gap:.75rem;}
+  .section-heading h2,.cap-title{font-size:clamp(1.9rem,8vw,2.5rem);line-height:1.1;}
+  .section-heading>p:last-child{font-size:.98rem;line-height:1.6;}
+}
+
+/* Studio panel: stack cleanly on phones and avoid tiny stat columns. */
+.studio-panel{min-width:0;}
+.studio-panel-brand,.studio-panel-grid,.studio-panel > div{min-width:0;}
+.studio-panel-brand img{max-width:100%;height:auto;}
+@media(max-width:767px){
+  .studio-panel{margin-top:.5rem;}
+  .studio-panel-brand{padding:1.5rem;gap:1.25rem;}
+  .studio-panel-head{padding:1.5rem 1.5rem .2rem;font-size:28px;line-height:1.1;}
+  .studio-focus-card{padding:1.05rem 1.25rem;grid-template-columns:2.2rem minmax(0,1fr);}
+  .studio-focus-card h3{font-size:1.15rem;line-height:1.25;}
+  .studio-focus-card p{font-size:.9rem;line-height:1.55;}
+  .studio-stats{grid-template-columns:repeat(3,minmax(0,1fr));gap:.7rem;}
+  .studio-stats dt{font-size:1.55rem;line-height:1;}
+  .studio-stats dd{font-size:.68rem;line-height:1.35;}
+}
+@media(max-width:380px){
+  .studio-stats{gap:.45rem;}
+  .studio-stats dt{font-size:1.35rem;}
+  .studio-stats dd{font-size:.64rem;}
+}
+
+/* Logo band: no stretched logos and no horizontal page overflow. */
+.logo-band{min-width:0;}
+.logo-band-label{overflow-wrap:anywhere;}
+.logo-band-marquee{min-width:0;width:100%;overflow:hidden;}
+.logo-band-track{will-change:transform;}
+.logo-band-track .asset-slot{flex:0 0 auto;}
+.logo-band-track .asset-slot>img{display:block;width:100%;height:100%;object-fit:contain;}
+@media(max-width:767px){
+  .logo-band{padding:2rem 1.25rem;gap:1.25rem;border-radius:16px;}
+  .logo-band-label{font-size:1rem;line-height:1.3;max-width:none;}
+  .logo-band-track{gap:2.5rem;}
+}
+
+/* Stage section: absolute artwork is desktop-only; mobile/tablet stays clean. */
+@media(max-width:1023px){
+  .stage-shell{padding-bottom:0!important;}
+  .stage-art{display:none!important;}
+}
+@media(max-width:767px){
+  .stage-band{gap:1.5rem;}
+  .stage-copy h2{font-size:clamp(1.9rem,8vw,2.5rem);line-height:1.1;}
+  .stage-copy p{font-size:.95rem;line-height:1.65;}
+  .stage-track{gap:.6rem;}
+  .stage-track li{padding:.8rem .9rem;grid-template-columns:auto minmax(0,1fr);}
+}
+
+/* Domains / grids: explicit minmax prevents long text from forcing columns wider. */
+.domain-columns,.shipped-grid,.cap-layout,.case-grid,.team-grid{min-width:0;}
+.domain-col,.shipped-card,.case-card,.feature-card,.project-card,.principle-card,.team-card{min-width:0;}
+.domain-col li,.case-card p,.project-card p,.feature-card p,.team-bio{overflow-wrap:anywhere;}
+@media(max-width:767px){
+  .domains-dark .domain-col h3{font-size:1rem;}
+  .domains-dark .domain-col li{font-size:.92rem;line-height:1.5;}
+}
+
+/* Capabilities: keep illustration and tabs within the available width. */
+.cap-layout{min-width:0;}
+.cap-main,.cap-art{min-width:0;}
+.cap-art img{width:min(100%,34rem);height:auto;object-fit:contain;}
+@media(max-width:900px){
+  .cap-layout{gap:1.75rem;}
+}
+@media(max-width:767px){
+  .cap-tabs{gap:.4rem;}
+  .cap-tab{padding:.45rem .75rem;font-size:.76rem;}
+  .cap-panel .cap-marks{flex-wrap:wrap;}
+}
+
+/* Work/project cards: artwork stays proportional instead of stretching. */
+.project-art,.principle-art{min-width:0;}
+.project-art>img,.principle-art>img{max-width:100%;object-fit:contain;}
+.project-foot{min-width:0;}
+.project-foot p{min-width:0;overflow-wrap:anywhere;}
+@media(max-width:767px){
+  .project-card,.case-card,.feature-card,.principle-card{padding:1.25rem;}
+  .project-art,.principle-art{aspect-ratio:1/1;min-height:0;}
+  .project-art>img,.principle-art>img{width:min(100%,220px);height:min(100%,220px);}
+  .project-card h3,.case-card h3{font-size:1.3rem;line-height:1.2;}
+}
+
+/* Agentic panel: preserve the visual at tablet/desktop, simplify only on phones. */
+.orch-grid{min-width:0;}
+.orch-grid > *{min-width:0;}
+@media(min-width:768px) and (max-width:1023px){
+  .orch-grid{gap:1.75rem;}
+  .orch-team-card{width:5rem;}
+}
+
+/* Stat band: equal cells and safe wrapping on small screens. */
+.stat-band-inner{min-width:0;}
+.stat-band-inner>div{min-width:0;}
+.stat-band dt,.stat-band dd{overflow-wrap:anywhere;}
+@media(max-width:767px){
+  .stat-band{padding:2.5rem 0;}
+  .stat-band-inner{grid-template-columns:1fr 1fr;}
+  .stat-band-inner>div{padding:1.2rem 1rem;}
+  .stat-band dt{font-size:1.35rem;line-height:1.15;}
+  .stat-band dd{font-size:.75rem;line-height:1.45;}
+}
+
+/* Feed / terminal: never force a phone wider than the viewport. */
+.feed-card,.feed-body{min-width:0;}
+.feed-head{min-width:0;overflow:hidden;}
+.feed-head span,.feed-line{min-width:0;}
+.feed-line{overflow-wrap:anywhere;}
+@media(max-width:767px){
+  .feed-card{border-radius:14px;}
+  .feed-head{padding:.65rem .8rem;font-size:.72rem;}
+  .feed-body{padding:.85rem .8rem;font-size:.68rem;line-height:1.7;overflow-x:auto;}
+}
+
+/* FAQ: readable touch targets and consistent line spacing. */
+.faq-list{width:100%;max-width:650px;}
+.faq-item summary{min-height:3.5rem;}
+@media(max-width:767px){
+  .faq-item summary{padding:1rem;min-height:3.5rem;font-size:.95rem;line-height:1.4;}
+  .faq-item p{padding:0 1rem 1rem;font-size:.9rem;line-height:1.6;}
+}
+
+/* Team carousel: card width adapts to phone/tablet, arrows stay reachable. */
+.team-carousel{min-width:0;}
+.team-grid{min-width:0;}
+.team-grid>.reveal{min-width:0;}
+@media(max-width:767px){
+  .team-grid{gap:1rem;padding-bottom:.75rem;}
+  .team-grid>.reveal{flex-basis:min(290px,84vw);}
+  .team-nav-prev{left:.15rem;}
+  .team-nav-next{right:.15rem;}
+  .team-card{padding:1.5rem 1.1rem;}
+}
+
+/* Contact: the desktop padding was too large for narrow phones. */
+.cta-panel,.cta-copy,.cta-actions{min-width:0;}
+.cta-copy h2,.cta-lead,.cta-quote{overflow-wrap:anywhere;}
+.cta-chip{max-width:100%;}
+@media(max-width:899px){
+  .cta-panel{padding:2rem 1.5rem 1.75rem;gap:1.5rem;}
+  .cta-actions{width:100%;align-items:flex-start;}
+  .cta-actions-inner{width:100%;margin-left:0;align-items:flex-start;}
+  .cta-actions-inner .cta-actions-label{align-self:flex-start;}
+  .cta-chip{width:100%;justify-content:flex-start;}
+}
+@media(max-width:767px){
+  #contact{padding-top:0;padding-bottom:4rem;}
+  .cta-panel{padding:1.5rem 1.1rem;gap:1.25rem;border-radius:14px;}
+  .cta-copy h2{font-size:1.75rem;line-height:1.2;}
+  .cta-lead{font-size:.95rem;line-height:1.6;}
+  .cta-quote{font-size:.8rem;line-height:1.55;}
+  .cta-chip{font-size:.9rem;padding:.7rem .85rem;}
+}
+
+/* Footer: prevent the desktop two-column geometry from becoming cramped. */
+.site-footer{width:100%;}
+.site-footer .footer-inner,.footer-bottom{min-width:0;}
+.footer-brand,.footer-links,.footer-column{min-width:0;}
+.footer-logo img{max-width:100%;height:auto;object-fit:contain;}
+@media(max-width:760px){
+  .site-footer{padding-top:3.5rem;padding-bottom:5rem;}
+  .site-footer .footer-inner{width:min(100% - 2rem,1180px);gap:2.25rem;}
+  .footer-links{gap:1.5rem;}
+  .footer-bottom{width:min(100% - 2rem,1180px);margin-top:2rem;padding-top:1rem;}
+}
+
+/* Images: no distortion anywhere unless the component intentionally uses cover. */
+img{max-width:100%;}
+img:not(.team-photo):not(.shipped-shot img){height:auto;}
+.team-photo{object-fit:cover;}
+.shipped-shot>img,.shipped-media img{width:100%;height:100%;object-fit:cover;}
+
+/* Remove accidental vertical scrollbar caused by full-width effects. */
+html,body{max-width:100%;overflow-x:hidden;}
+main{max-width:100%;overflow-x:clip;}
+
+/* Touch devices should not retain hover-only visual transforms. */
+@media(hover:none){
+  .button:hover,.explore-all:hover,.project-link:hover,.feature-card:hover,.shipped-card:hover,.principle-card:hover{transform:none;filter:none;}
+  .button:hover svg{transform:none;}
+}
+
+
+/* =========================================================
+   FINAL MOBILE / TABLET POLISH PASS
+   ========================================================= */
+
+/* Stage experience: keep every mobile card fully inside the section.
+   The last card previously sat too close to the section edge, which made
+   its bottom border look visually clipped on small screens. */
+@media (max-width:767px){
+  .stage-shell{padding-bottom:1.25rem!important;}
+  .stage-band{width:100%;min-width:0;gap:1.35rem;}
+  .stage-copy{min-width:0;}
+  .stage-track{width:100%;min-width:0;gap:.7rem;padding-bottom:.35rem;}
+  .stage-track li{
+    width:100%;
+    min-width:0;
+    min-height:0;
+    padding:.9rem 1rem;
+    grid-template-columns:auto minmax(0,1fr);
+    align-items:start;
+  }
+  .stage-track li strong,
+  .stage-track li span:last-child{min-width:0;overflow-wrap:anywhere;}
+  .stage-dot{margin-top:.35rem;}
+}
+
+/* Service cards: icon, number and title share one centered visual axis.
+   Body copy remains centered as well so the card reads as one intentional unit. */
+.feature-card{text-align:center;}
+.feature-card .service-icon{margin-inline:auto;margin-bottom:.15rem;}
+.feature-card .studio-focus-num{display:block;padding-top:0;margin:0;color:#8fa9bd;line-height:1.2;text-align:center;}
+.feature-card h3{margin:0;text-align:center;}
+.feature-card>p:last-child{margin-inline:auto;max-width:34rem;text-align:center;}
+@media(max-width:767px){
+  .feature-card{padding:1.25rem!important;}
+  .feature-card .service-icon{width:56px;height:56px;margin-bottom:.15rem;}
+  .feature-card .studio-focus-num{font-size:.78rem;}
+  .feature-card h3{font-size:1.3rem;line-height:1.2;}
+  .feature-card>p:last-child{font-size:.92rem;line-height:1.58;}
+}
+
+/* Team carousel: on phones the first leadership card should sit visually
+   centered in the viewport, while the arrow remains centered on the card.
+   Scroll padding gives the carousel equal breathing room at both ends. */
+.team-carousel{position:relative;min-width:0;}
+.team-grid{scroll-padding-inline:calc((100% - min(290px,84vw))/2);}
+.team-nav{top:50%;}
+@media(max-width:767px){
+  .team-grid{
+    padding-left:calc((100% - min(290px,84vw))/2);
+    padding-right:calc((100% - min(290px,84vw))/2);
+    scroll-padding-inline:calc((100% - min(290px,84vw))/2);
+  }
+  .team-grid>.reveal{flex:0 0 min(290px,84vw);}
+  .team-nav{
+    top:50%;
+    width:2.35rem;
+    height:2.35rem;
+    z-index:5;
+  }
+  .team-nav-prev{left:0;}
+  .team-nav-next{right:0;}
+  .team-card{width:100%;min-width:0;}
+  .team-body{min-width:0;}
+  .team-name,.team-role,.team-bio{overflow-wrap:anywhere;}
+}
+
+/* Real product screenshots must never be cropped by a later generic image rule. */
+.shipped-shot>img,
+.shipped-media img{
+  width:100%!important;
+  height:100%!important;
+  max-width:none!important;
+  max-height:none!important;
+  object-fit:contain!important;
+  object-position:center center!important;
+}
+
+/* Keep all service / project imagery proportional. */
+.service-icon img,
+.project-art>img,
+.principle-art>img,
+.cap-art img{
+  object-fit:contain!important;
+}
+
+/* Prevent a flex child from creating a hidden mobile width overflow. */
+.team-grid>.reveal,
+.team-card,
+.team-photo,
+.team-body{max-width:100%;}
+
+/* Touch devices: no hover enlargement on cards/images. */
+@media(hover:none){
+  .feature-card:hover,
+  .team-card:hover,
+  .shipped-card:hover{transform:none!important;}
+}
+</style>
 </head>
 <body>
 <a class="skip-link" href="#top">Skip to content</a>
@@ -1132,7 +1485,7 @@ section[aria-label="Engineering capabilities"]{overflow-x:clip}
   }, {threshold: 0.1, rootMargin: '0px 0px -8% 0px'});
   els.forEach(function(el){ io.observe(el); });
   // fallback: reveal everything shortly after load in case IO doesn't fire (iframe edge cases)
-  setTimeout(function(){ els.forEach(function(el){ el.classList.add('visible'); }); }, 1200);
+  setTimeout(function(){ els.forEach(function(el){ el.classList.add('visible'); }); }, 900);
 
   // Work filter tabs
   var buttons = document.querySelectorAll('.filter-button');
@@ -1162,7 +1515,7 @@ section[aria-label="Engineering capabilities"]{overflow-x:clip}
     var menu = document.createElement('div');
     menu.className = 'nav-mobile-menu';
     menu.id = 'mobile-menu';
-    menu.style.cssText = 'position:fixed;left:0;right:0;top:4.5rem;background:var(--card);z-index:50;padding:14px 24px 22px;display:none;flex-direction:column;font-size:1.05rem;border-bottom-left-radius:20px;border-bottom-right-radius:20px;box-shadow:0 24px 48px -12px rgba(16,32,51,.28);max-height:calc(100vh - 7.5rem);overflow-y:auto;border-top:1px solid var(--border);';
+    menu.style.cssText = 'position:fixed;left:0;right:0;top:calc(4.5rem + 12px);background:var(--card);z-index:50;padding:14px 24px 22px;display:none;flex-direction:column;font-size:1.05rem;border-bottom-left-radius:20px;border-bottom-right-radius:20px;box-shadow:0 24px 48px -12px rgba(16,32,51,.28);max-height:calc(100vh - 7.5rem);overflow-y:auto;border-top:1px solid var(--border);';
 
     var linksHtml = navLinks ? navLinks.innerHTML : '';
     var ctaHtml = '';
@@ -1432,5 +1785,357 @@ section[aria-label="Engineering capabilities"]{overflow-x:clip}
     });
   });
 })();
-</script><script>(function(){function mark(i){var s=i.closest(".asset-slot");if(s)s.setAttribute("data-missing","");}document.querySelectorAll(".asset-slot img").forEach(function(i){i.addEventListener("error",function(){mark(i)});if(i.complete&&i.naturalWidth===0)mark(i);});})();</script><script>(function(){try{var hero=document.querySelector(".hero-art img, .hero-grid img");if(hero){hero.setAttribute("fetchpriority","high");hero.setAttribute("loading","eager");hero.setAttribute("decoding","async");}var navImg=document.querySelector('.nav-bar img');if(navImg&&!navImg.getAttribute("fetchpriority"))navImg.setAttribute("fetchpriority","high");}catch(e){}})();</script></body>
+</script><script>(function(){function mark(i){var s=i.closest(".asset-slot");if(s)s.setAttribute("data-missing","");}document.querySelectorAll(".asset-slot img").forEach(function(i){i.addEventListener("error",function(){mark(i)});if(i.complete&&i.naturalWidth===0)mark(i);});})();</script><script>(function(){try{var hero=document.querySelector(".hero-art img, .hero-grid img");if(hero){hero.setAttribute("fetchpriority","high");hero.setAttribute("loading","eager");hero.setAttribute("decoding","async");}var navImg=document.querySelector('.nav-bar img');if(navImg&&!navImg.getAttribute("fetchpriority"))navImg.setAttribute("fetchpriority","high");}catch(e){}})();</script>
+
+<style id="final-layout-correction-pass">
+/* =========================================================
+   GURKHA LABS — FINAL LAYOUT CORRECTION PASS
+   Fixes the two major regressions in the previous pass:
+   1) global image-height rule was overriding Tailwind image heights,
+      making the header logo render at its intrinsic 827x246 size.
+   2) shipped screenshots used object-fit:cover, cropping real UI.
+   Also removes reveal/loader blank states and tightens responsive rhythm.
+   ========================================================= */
+
+/* ---------- global sizing / overflow ---------- */
+html,body{width:100%;max-width:100%;overflow-x:hidden}
+body{min-width:0}
+main{width:100%;min-width:0;overflow-x:clip}
+.container-shell{width:100%;max-width:1280px;min-width:0;margin-inline:auto;padding-inline:clamp(16px,3.2vw,40px)}
+
+/* Do NOT globally force image height:auto: component images intentionally use fixed boxes. */
+img{display:block;max-width:100%;}
+
+/* ---------- header / logo ---------- */
+.site-header{width:100%;left:0;right:0;top:0;position:fixed;z-index:100}
+.site-header .container-shell{padding-inline:clamp(16px,3.2vw,40px)}
+.nav-bar{width:100%;min-width:0;height:72px;padding-inline:18px 14px;gap:14px}
+.nav-bar>a{display:flex;align-items:center;flex:0 0 auto;min-width:0;width:auto;max-width:42%}
+.nav-bar>a img,
+.nav-bar>a img.h-12,
+.nav-bar>a img.sm\:h-14{
+  display:block!important;
+  width:auto!important;
+  height:48px!important;
+  max-width:220px!important;
+  max-height:48px!important;
+  object-fit:contain!important;
+}
+@media(min-width:640px){
+  .nav-bar{height:80px;padding-inline:24px 16px}
+  .nav-bar>a img,
+  .nav-bar>a img.h-12,
+  .nav-bar>a img.sm\:h-14{
+    height:56px!important;
+    max-height:56px!important;
+    max-width:250px!important;
+  }
+}
+@media(max-width:767px){
+  .site-header{top:8px}
+  .site-header .container-shell{padding-inline:12px}
+  .nav-bar{height:60px;padding-inline:12px 10px;gap:8px}
+  .nav-bar>a{max-width:68%}
+  .nav-bar>a img,
+  .nav-bar>a img.h-12,
+  .nav-bar>a img.sm\:h-14{
+    height:40px!important;
+    max-height:40px!important;
+    max-width:170px!important;
+  }
+  .nav-toggle{width:40px;height:40px;flex:0 0 40px;display:flex;align-items:center;justify-content:center}
+}
+
+/* ---------- mobile menu ---------- */
+.nav-mobile-menu{z-index:99!important}
+@media(max-width:767px){
+  .nav-mobile-menu{top:76px!important;left:12px!important;right:12px!important;width:auto!important;max-height:calc(100vh - 92px)!important}
+}
+@media(min-width:768px) and (max-width:1023px){
+  .nav-mobile-menu{top:92px!important}
+}
+
+/* ---------- reveal / loader safety ----------
+   Content must remain visible even if JS, IntersectionObserver or an embedded
+   browser delays the observer. Motion is decorative, never a visibility gate. */
+.reveal,
+.js .reveal,
+.js .reveal.visible{
+  opacity:1!important;
+  visibility:visible!important;
+  transform:none;
+}
+@media(prefers-reduced-motion:reduce){
+  .reveal,.js .reveal,.js .reveal.visible{opacity:1!important;transform:none!important}
+}
+
+/* ---------- hero ---------- */
+.hero-shell{padding-top:clamp(88px,8vw,112px)!important}
+.hero-grid{width:100%;min-width:0;gap:clamp(28px,4vw,56px);padding-top:clamp(48px,5vw,80px)!important;padding-bottom:clamp(40px,5vw,64px)!important}
+.hero-copy,.hero-art{min-width:0}
+.hero-title{max-width:12ch;overflow-wrap:normal;word-break:normal}
+.hero-lead{max-width:38rem;line-height:1.7}
+.hero-art{width:100%;max-width:585px;margin-inline:auto;aspect-ratio:585/390}
+.hero-art>img{display:block!important;width:100%!important;height:100%!important;max-width:585px!important;object-fit:contain!important;margin-inline:auto}
+@media(max-width:1023px){
+  .hero-shell{padding-top:76px!important}
+  .hero-grid{grid-template-columns:1fr;gap:32px}
+  .hero-art{order:-1;max-width:min(585px,92vw)}
+  .hero-title{max-width:15ch}
+}
+@media(max-width:767px){
+  .hero-shell{padding-top:68px!important}
+  .hero-grid{padding-top:34px!important;padding-bottom:36px!important;gap:26px}
+  .hero-art{display:none!important}
+  .hero-title{max-width:100%;font-size:clamp(2.25rem,10.5vw,3.1rem);line-height:1.08}
+  .hero-lead{font-size:.98rem;line-height:1.68}
+  .hero-actions{width:100%;display:flex;flex-direction:column;gap:10px}
+  .hero-actions .button-primary,
+  .hero-actions .button-secondary{width:100%!important;max-width:none;min-width:0}
+}
+
+/* ---------- studio panel ---------- */
+.studio-panel,.studio-panel>*{min-width:0}
+.studio-panel-brand img{display:block!important;width:min(470px,100%)!important;height:auto!important;max-height:none!important;object-fit:contain!important}
+@media(max-width:900px){
+  .studio-panel{grid-template-columns:1fr!important}
+  .studio-panel-brand{padding:clamp(24px,5vw,40px)!important}
+}
+@media(max-width:767px){
+  .studio-panel-brand{padding:24px 18px!important}
+  .studio-panel>div:last-child{padding:0 18px 26px!important}
+  .studio-panel-head{font-size:28px!important;line-height:1.12!important;padding:26px 0 18px!important}
+  .studio-focus-card{padding:0!important}
+  .studio-focus-card h3{font-size:20px!important;line-height:1.2!important}
+  .studio-focus-card p{font-size:15px!important;line-height:1.55!important}
+}
+
+/* ---------- logo marquee ---------- */
+.logo-band,.logo-band-marquee,.logo-band-track{min-width:0}
+.logo-band-marquee{overflow:hidden;width:100%}
+.logo-band-track .asset-slot{flex:0 0 auto;display:flex;align-items:center;justify-content:center}
+.logo-band-track .asset-slot>img{display:block!important;width:100%!important;height:100%!important;max-width:none!important;max-height:none!important;object-fit:contain!important}
+
+/* ---------- all screenshot-led cards ---------- */
+.shipped-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:24px;align-items:stretch}
+@media(min-width:900px){.shipped-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:28px}}
+.shipped-grid>div{min-width:0;display:flex}
+.shipped-card{width:100%;min-width:0;height:100%;overflow:hidden;padding:18px 18px 24px!important;border-radius:18px!important}
+
+/* IMPORTANT: show the complete screenshots, never crop the top/bottom UI. */
+.shipped-shot{
+  width:100%!important;
+  height:auto!important;
+  min-height:0!important;
+  aspect-ratio:16/9!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  overflow:hidden!important;
+  background:#f4f8fb!important;
+  border-radius:12px!important;
+}
+.shipped-shot>img{
+  display:block!important;
+  width:100%!important;
+  height:100%!important;
+  max-width:none!important;
+  max-height:none!important;
+  object-fit:contain!important;
+  object-position:center center!important;
+  transform:none!important;
+}
+.shipped-body{min-width:0;padding:20px 4px 0!important;gap:9px!important}
+.shipped-eyebrow{line-height:1.35!important}
+.shipped-card h3{font-size:clamp(1.45rem,2.2vw,1.85rem)!important;line-height:1.12!important}
+.shipped-role{line-height:1.4!important}
+.shipped-note{font-size:1rem!important;line-height:1.6!important;margin-top:5px!important}
+.shipped-chips{gap:8px!important;margin-top:8px!important}
+.shipped-chips span{line-height:1.25!important}
+@media(max-width:767px){
+  .shipped-grid{gap:18px}
+  .shipped-card{padding:14px 14px 20px!important;border-radius:16px!important}
+  .shipped-shot{aspect-ratio:16/9!important;border-radius:10px!important}
+  .shipped-body{padding:17px 2px 0!important;gap:8px!important}
+  .shipped-card h3{font-size:1.45rem!important}
+  .shipped-note{font-size:.94rem!important;line-height:1.58!important}
+}
+
+/* ---------- Our Work illustrations ---------- */
+.project-art,.principle-art{width:100%;min-width:0;aspect-ratio:4/3!important;min-height:0!important;height:auto!important}
+.project-art>img,.principle-art>img{
+  display:block!important;
+  width:100%!important;
+  height:100%!important;
+  max-width:100%!important;
+  max-height:100%!important;
+  object-fit:contain!important;
+}
+@media(max-width:767px){
+  .project-art,.principle-art{aspect-ratio:4/3!important}
+  .project-card,.principle-card{padding:18px!important}
+}
+
+/* ---------- capabilities / service icons ---------- */
+.service-icon{width:62px;height:62px;display:flex;align-items:center;justify-content:center}
+.service-icon img{display:block!important;width:100%!important;height:100%!important;max-width:100%!important;object-fit:contain!important}
+.cap-art img{width:min(100%,34rem)!important;height:auto!important;object-fit:contain!important}
+
+/* ---------- typography rhythm ---------- */
+p{overflow-wrap:break-word}
+h1,h2,h3{overflow-wrap:normal;word-break:normal}
+.section-heading h2{line-height:1.1!important}
+.section-heading>p:last-child{line-height:1.65!important}
+.feature-card p,.principle-card p,.project-foot p{line-height:1.6}
+
+/* ---------- grids: no child can force a desktop/tablet column wider ---------- */
+.grid,.shipped-grid,.case-grid,.cap-layout,.domain-columns,.team-grid,.studio-panel-grid{min-width:0}
+.grid>* , .case-grid>*, .shipped-grid>*, .cap-layout>*, .domain-columns>*, .team-grid>*{min-width:0}
+
+/* ---------- tablet ---------- */
+@media(min-width:768px) and (max-width:1023px){
+  .container-shell{padding-inline:24px}
+  .section-pad{padding-block:72px}
+  .shipped-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+  .shipped-shot{aspect-ratio:16/9!important}
+  .project-card,.feature-card,.principle-card{min-width:0}
+}
+
+/* ---------- small phones ---------- */
+@media(max-width:420px){
+  .container-shell{padding-inline:16px}
+  .section-pad{padding-block:48px}
+  .section-heading h2{font-size:clamp(1.85rem,8.8vw,2.35rem)!important}
+  .studio-stats{gap:.5rem!important}
+  .studio-stats dt{font-size:1.35rem!important}
+  .studio-stats dd{font-size:.65rem!important}
+  .shipped-shot{aspect-ratio:16/9!important}
+}
+
+/* ---------- desktop ---------- */
+@media(min-width:1024px){
+  .container-shell{padding-inline:40px}
+  .shipped-shot{aspect-ratio:16/9!important}
+}
+
+/* ---------- no hover scaling of real screenshots ---------- */
+.shipped-card:hover .shipped-shot>img,
+.feature-card:hover .shipped-shot img{transform:none!important}
+@media(hover:none){
+  .shipped-card:hover,.feature-card:hover,.project-card:hover,.principle-card:hover{transform:none!important}
+}
+
+/* =========================================================
+   FINAL LOGO BAND WIDTH / RESPONSIVE SPACING PASS
+   Keeps the band inside the viewport while giving it a
+   wider, more premium desktop/notebook presentation.
+   ========================================================= */
+
+/* Base/mobile: use the full available content width.
+   Do not expand on phones, so there is no side overflow. */
+.logo-band{
+  width:100%;
+  max-width:none;
+  margin-inline:0;
+  box-sizing:border-box;
+}
+
+/* Phones: reduce the large internal side padding so the
+   label + marquee do not look squeezed by empty gutters. */
+@media (max-width:767px){
+  .logo-band{
+    width:100%;
+    margin-inline:0;
+    padding:2rem 1.25rem!important;
+    gap:1.35rem;
+    border-radius:18px;
+  }
+  .logo-band-label{
+    max-width:none;
+    font-size:.88rem;
+    line-height:1.45;
+    letter-spacing:.055em;
+  }
+  .logo-band-marquee{
+    width:100%;
+    min-width:0;
+  }
+  .logo-band-track{
+    gap:2.5rem;
+  }
+  .logo-band-track .asset-slot{
+    width:145px;
+    height:56px;
+  }
+}
+
+/* Tablet: make the box slightly wider than the normal
+   content column without touching the viewport edges. */
+@media (min-width:768px) and (max-width:1023px){
+  .logo-band{
+    width:calc(100% + 32px);
+    margin-inline:-16px;
+    padding:2.5rem 2rem!important;
+    gap:2rem;
+    border-radius:20px;
+  }
+  .logo-band-label{
+    max-width:20rem;
+  }
+}
+
+/* Notebook/laptop: use almost the full 1280px container
+   rather than leaving an unnecessarily large gutter on
+   both sides. */
+@media (min-width:1024px){
+  .logo-band{
+    width:calc(100% + 48px);
+    margin-inline:-24px;
+    padding:2.6rem 3rem!important;
+    gap:3rem;
+  }
+}
+
+/* Large desktop: keep a comfortable outer margin instead
+   of allowing the band to become visually oversized. */
+@media (min-width:1440px){
+  .logo-band{
+    width:calc(100% + 40px);
+    margin-inline:-20px;
+  }
+}
+
+/* Prevent any marquee child from increasing the page width. */
+.logo-band,
+.logo-band-marquee{
+  max-width:none;
+  overflow:hidden;
+}
+.logo-band-track{
+  min-width:max-content;
+  max-width:none;
+}
+
+/* Preserve the complete logo artwork without stretching. */
+.logo-band-track .asset-slot>img{
+  object-fit:contain!important;
+  object-position:center!important;
+}
+/* --- CENTER ALL CONTENT IN FEATURE CARDS --- */
+.feature-card {
+    text-align: center !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+}
+
+.feature-card .service-icon {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+</style>
+
+</body>
 </html>
