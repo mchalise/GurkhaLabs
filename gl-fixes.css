@@ -1,0 +1,504 @@
+/* ===== 1. "What we do" box: smaller logo, tighter, more rectangular ===== */
+@media(min-width:901px){
+  .studio-panel{max-width:1080px;margin-inline:auto;min-height:0!important;border-radius:16px}
+  .studio-panel-brand{padding:2.25rem 2rem 2rem!important;gap:1.25rem!important;justify-content:space-between}
+  .studio-panel-brand>div:first-child{gap:1rem!important}
+  .studio-panel-brand img{width:min(270px,100%)!important}
+  .studio-panel-tagline{font-size:.72rem!important;letter-spacing:.14em!important}
+
+  .studio-panel>div:last-child{padding:0 2rem 1.75rem!important}
+  .studio-panel-head{font-size:34px!important;line-height:1.1!important;padding:1.6rem 0 1.1rem!important}
+  .studio-panel-grid{gap:1.25rem!important}
+
+  /* number -> title -> text gaps closed up */
+  .studio-focus-num{font-size:15px!important;margin:0 0 .2rem!important}
+  .studio-focus-card h3{font-size:20px!important;line-height:1.2!important;margin:0 0 .3rem!important}
+  .studio-focus-card p{font-size:15px!important;line-height:1.5!important}
+
+  /* stats row */
+  .studio-stats{gap:1.25rem!important}
+  .studio-stats div{gap:.15rem!important}
+  .studio-stats dt{font-size:32px!important;gap:.2rem}
+  .studio-stats dd{font-size:13px!important;line-height:1.3!important}
+}
+@media(max-width:900px){
+  .studio-panel-brand img{width:min(240px,70vw)!important}
+  .studio-focus-num{margin-bottom:.2rem!important}
+  .studio-focus-card h3{margin-bottom:.25rem!important}
+  .studio-panel-grid{gap:1.25rem!important}
+}
+
+/* ===== 2. Gap above "Why Choose Us" ===== */
+.wave-divider{background:var(--surface)}
+.wave-divider svg{height:clamp(90px,12vw,170px)}
+.wave-divider svg rect{fill:#eef5f8}
+#about{padding-top:1.5rem!important}
+.agent-feed-dark{padding-bottom:1rem!important}
+@media(max-width:767px){
+  #about{padding-top:1rem!important}
+}
+
+/* ===== 3. Hero title: two lines, "move business." in orange ===== */
+.hero-title{max-width:none!important}
+.hero-title .hero-accent{color:var(--accent-warm,#b05a29)}
+@media(min-width:1024px){
+  .hero-title{font-size:clamp(3rem,4.6vw,4.4rem)!important;line-height:1.12!important}
+}
+
+/* ===== 4. Meet the Leadership: 3 equal cards + next arrow ===== */
+@media(min-width:768px){
+  .team-carousel{padding-right:4rem}
+  .team-grid{padding-left:0!important;padding-right:0!important;scroll-padding-inline:0!important;gap:1.5rem;align-items:stretch}
+  .team-grid>.reveal{flex:0 0 calc((100% - 1.5rem)/2)!important;display:flex}
+  .team-grid>.reveal .team-card{height:100%;width:100%;padding:1.5rem 1.25rem}
+  .team-nav-next{right:0!important}
+  .team-nav-prev{left:-1.25rem!important}
+}
+@media(min-width:1024px){
+  .team-grid>.reveal{flex:0 0 calc((100% - 3rem)/3)!important}
+}
+@media(min-width:768px){
+  .team-bio{font-size:.85rem;line-height:1.55}
+  .team-photo{width:5rem;height:5rem}
+}
+
+/* ===== 5. Work + Why Choose Us illustrations: never oversized on tablet/mobile ===== */
+@media(max-width:1023px){
+  .project-art,.principle-art{
+    width:100%!important;
+    max-width:340px;
+    margin-inline:auto!important;
+    aspect-ratio:4/3!important;
+    max-height:255px;
+  }
+  .project-art>img,.principle-art>img{max-height:100%!important}
+}
+@media(max-width:600px){
+  .project-art,.principle-art{max-width:280px;max-height:210px}
+}
+
+/* ===== 6. Meet the Leadership: smaller gaps, aligned cards ===== */
+section[aria-label="FAQ"]{padding-bottom:3rem!important}
+#team{padding-top:3.5rem!important;padding-bottom:4.5rem!important}
+#team .container-shell{gap:2rem!important}
+#team .section-heading h2{font-size:clamp(1.9rem,4vw,2.6rem)!important;line-height:1.1!important}
+#team .section-heading>p:last-child{font-size:.95rem!important;line-height:1.55!important}
+#team .team-name{font-size:1.15rem!important;font-weight:600}
+#team .team-role{font-size:.66rem!important;letter-spacing:.07em!important;font-weight:600!important;line-height:1.35}
+@media(min-width:768px) and (max-width:1279px){
+  #team .team-role{display:flex;align-items:flex-end;justify-content:center;min-height:2.7em}
+}
+@media(max-width:767px){
+  #team{padding-top:2.5rem!important;padding-bottom:3.5rem!important}
+}
+
+/* ===== 5b. STRONGER FIX: Work + Why Choose Us cards on tablet/mobile ===== */
+@media(max-width:1023px){
+  #work .project-card .project-art,
+  #about .principle-card .principle-art{
+    width:100%!important;
+    max-width:320px!important;
+    height:auto!important;
+    max-height:240px!important;
+    aspect-ratio:4/3!important;
+    margin-inline:auto!important;
+  }
+  #work .project-card .project-art>img,
+  #about .principle-card .principle-art>img{
+    width:100%!important;height:100%!important;object-fit:contain!important;
+  }
+  /* two cards per row on tablet so cards are not full-width */
+  #work .grid.lg\:grid-cols-3,
+  #about .grid.md\:grid-cols-3{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  }
+}
+/* phones: one card per row, centred, not stretched */
+@media(max-width:639px){
+  #work .grid.lg\:grid-cols-3,
+  #about .grid.md\:grid-cols-3{
+    grid-template-columns:minmax(0,1fr)!important;
+    max-width:400px;
+    margin-inline:auto;
+  }
+  #work .project-card .project-art,
+  #about .principle-card .principle-art{max-width:260px!important;max-height:195px!important}
+}
+
+/* ===== 7. White illustration backgrounds (Our Work + Why Choose Us) ===== */
+#work .project-art,
+#about .principle-art,
+.project-art,
+.principle-art,
+.project-art.asset-slot,
+.principle-art.asset-slot{
+  background:#fff!important;
+  background-color:#fff!important;
+  border-radius:0;
+}
+.project-art>img,
+.principle-art>img{background:transparent!important}
+
+/* ===== 8. Agentic Engineering: bigger dark box ===== */
+@media(min-width:768px){
+  .orch-grid{grid-template-columns:minmax(0,.85fr) minmax(0,1.3fr)!important;gap:2.5rem!important}
+  .orch-panel{aspect-ratio:16/11.5!important;border-radius:1.1rem}
+  .orch-team-card{width:6.6rem!important;padding:.75rem .55rem!important}
+  .orch-ico{width:2.1rem!important;height:2.1rem!important}
+  .orch-ico svg{width:1.25rem!important;height:1.25rem!important}
+  .orch-team-name{font-size:.8rem!important}
+  .orch-hub-core{width:3.4rem!important;height:3.4rem!important}
+  .orch-hub-label{font-size:.82rem!important}
+}
+@media(min-width:768px) and (max-width:1023px){
+  .orch-grid{grid-template-columns:1fr!important}
+  .orch-team-card{width:5.4rem!important}
+}
+
+/* ===== 9. Stat band (50+ / MVP -> Series B ...): smaller box ===== */
+.stat-band{padding:2.75rem 0!important}
+.stat-band-inner{max-width:1080px!important}
+.stat-band-inner>div{padding:1.25rem 1.5rem!important}
+.stat-band dt{font-size:1.75rem!important;font-weight:400!important;line-height:1.15!important}
+.stat-band dd{font-size:.85rem!important;line-height:1.45!important;margin-top:.4rem!important}
+@media(max-width:767px){
+  .stat-band{padding:2rem 0!important}
+  .stat-band-inner>div{padding:1rem!important}
+  .stat-band dt{font-size:1.35rem!important}
+}
+
+/* ===== 10. Full-width dark bands: logo band, Core Stack, studio note ===== */
+.logo-band,
+.core-stack,
+.studio-note{
+  width:100vw!important;
+  max-width:none!important;
+  margin-left:calc(50% - 50vw)!important;
+  margin-right:calc(50% - 50vw)!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+  filter:none!important;
+  box-sizing:border-box!important;
+  padding-left:max(1.25rem,calc((100vw - 1200px)/2))!important;
+  padding-right:max(1.25rem,calc((100vw - 1200px)/2))!important;
+}
+.logo-band,.core-stack{border:0!important}
+
+/* ===== 11. Logo band: perfectly smooth, seamless marquee ===== */
+.logo-band{--gl-gap:70px}
+@media(max-width:900px){.logo-band{--gl-gap:56px}}
+@media(max-width:767px){.logo-band{--gl-gap:40px}}
+.logo-band::after{display:none!important}           /* sheen animation caused jank */
+.logo-band-track{
+  gap:0!important;
+  animation:gl-logo-smooth 32s linear infinite!important;
+  will-change:transform;
+  backface-visibility:hidden;
+  transform:translate3d(0,0,0);
+}
+.logo-band-track .asset-slot{margin-right:var(--gl-gap)!important;flex:0 0 auto}
+@keyframes gl-logo-smooth{
+  from{transform:translate3d(0,0,0)}
+  to{transform:translate3d(-50%,0,0)}
+}
+@media(prefers-reduced-motion:reduce){.logo-band-track{animation:none!important}}
+
+/* ===== 12. Core Stack: all technologies in one row on desktop ===== */
+.core-stack{padding-top:1.75rem!important;padding-bottom:1.75rem!important}
+@media(min-width:1100px){
+  .core-stack-list{flex-wrap:nowrap!important;justify-content:center!important;gap:clamp(.7rem,1.3vw,1.4rem)!important;width:100%}
+  .core-stack .tech-chip{font-size:clamp(.72rem,1.05vw,.95rem)!important;white-space:nowrap}
+  .core-stack .tech-chip svg{width:1.1em!important;height:1.1em!important}
+}
+
+/* ===== 13. Contact panel ("Have a hard problem worth solving?") ===== */
+@media(min-width:1200px){
+  #contact .container-shell{max-width:1640px;padding-inline:clamp(1.5rem,5.5vw,6.25rem)}
+  #contact .cta-panel{padding:2.5rem 5.5rem 2.25rem;border-radius:14px;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr)}
+  #contact .cta-copy h2{font-size:clamp(2.2rem,2.6vw,2.75rem);font-weight:500;line-height:1.3;max-width:34rem}
+  #contact .cta-lead{font-size:1.1rem;max-width:36rem}
+  #contact .cta-quote{font-size:.85rem}
+  #contact .cta-actions-label{font-size:1.4rem;letter-spacing:.02em}
+  #contact .cta-chip{font-size:1.5rem;padding:.75rem 1.05rem;border-radius:10px}
+  #contact .cta-chip svg{width:1.5rem;height:1.5rem}
+}
+@media(min-width:900px) and (max-width:1199px){
+  #contact .cta-chip{font-size:1.2rem}
+}
+
+/* ===== 14. NEW FOOTER ===== */
+footer.site-footer{
+  background:#092b49;color:#dbe7f1;
+  padding:3.5rem 0 2.5rem!important;margin-top:0!important;
+  border-top:0;
+}
+footer.site-footer .footer-grid{
+  width:min(1640px,calc(100% - 2*clamp(1rem,5.5vw,6.25rem)));
+  margin-inline:auto;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);
+  column-gap:2rem;row-gap:.5rem;
+  align-items:start;
+}
+/* left */
+footer.site-footer .footer-left{grid-column:1;grid-row:1 / span 2}
+footer.site-footer .footer-tagline{
+  margin:0 0 .9rem;max-width:27rem;color:#f1f6fa;
+  font-size:clamp(1.25rem,1.9vw,1.75rem);font-weight:400;line-height:1.25;
+}
+footer.site-footer .footer-location{margin:0 0 .75rem;color:#cfdde9;font-size:.95rem;line-height:1.5}
+/* centre */
+footer.site-footer .footer-center{grid-column:2;grid-row:1;display:flex;flex-direction:column;align-items:center;gap:1.6rem}
+footer.site-footer .footer-logo{display:inline-flex;padding:9px 13px;border-radius:9px;background:#fff;margin:0}
+footer.site-footer .footer-logo img{display:block!important;width:min(235px,60vw)!important;height:auto!important;max-height:none!important}
+footer.site-footer .footer-nav{display:flex;flex-wrap:wrap;justify-content:center;gap:.5rem 2.5rem}
+footer.site-footer .footer-nav a{color:#eef5fa;font-size:clamp(1.1rem,1.4vw,1.5rem);text-decoration:none;transition:color .2s}
+footer.site-footer .footer-nav a:hover{color:#e8874a}
+footer.site-footer .footer-copy{grid-column:2;grid-row:2;margin:.9rem 0 0;text-align:center;color:#a9bdce;font-size:.82rem}
+/* right */
+footer.site-footer .footer-right{grid-column:3;grid-row:1 / span 2;justify-self:end;display:flex;flex-direction:column;align-items:flex-start;gap:.95rem}
+footer.site-footer .footer-right a,
+footer.site-footer .footer-company{display:inline-flex;align-items:center;gap:.6rem;margin:0;color:#dbe7f1;text-decoration:none;font-size:.95rem}
+footer.site-footer .footer-company{font-size:1.05rem;letter-spacing:.05em}
+footer.site-footer .footer-right a:hover{color:#fff;text-decoration:underline;text-underline-offset:3px}
+footer.site-footer .footer-right svg{width:1.3rem;height:1.3rem;flex:0 0 auto}
+footer.site-footer .footer-social{display:flex;gap:.9rem;margin-top:.35rem}
+footer.site-footer .footer-social a{
+  width:3.1rem;height:3.1rem;border-radius:50%;background:#eef5fa;color:#144468;
+  justify-content:center;transition:transform .2s,background-color .2s;
+}
+footer.site-footer .footer-social a:hover{background:#fff;transform:translateY(-2px);text-decoration:none}
+footer.site-footer .footer-social svg{width:1.4rem;height:1.4rem}
+
+/* tablet + mobile: single centred column */
+@media(max-width:900px){
+  footer.site-footer{padding:2.75rem 0 6rem!important}
+  footer.site-footer .footer-grid{grid-template-columns:1fr;row-gap:2rem;text-align:center;justify-items:center}
+  footer.site-footer .footer-left,
+  footer.site-footer .footer-center,
+  footer.site-footer .footer-copy,
+  footer.site-footer .footer-right{grid-column:1;grid-row:auto}
+  footer.site-footer .footer-center{order:1}
+  footer.site-footer .footer-left{order:2}
+  footer.site-footer .footer-right{order:3;justify-self:center;align-items:center}
+  footer.site-footer .footer-copy{order:4;margin:0}
+  footer.site-footer .footer-tagline{margin-inline:auto}
+  footer.site-footer .footer-nav{gap:.5rem 1.75rem}
+}
+
+/* ===== 15. Contact panel: scale everything down (overrides section 13) ===== */
+@media(min-width:1200px){
+  #contact .container-shell{max-width:1400px!important;padding-inline:clamp(1.5rem,4vw,3rem)!important}
+  #contact .cta-panel{padding:2rem 3rem 1.75rem!important;gap:2rem!important;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr)!important}
+  #contact .cta-copy h2{font-size:clamp(1.75rem,2.2vw,2.2rem)!important;line-height:1.25!important;max-width:none!important}
+  #contact .cta-lead{font-size:1rem!important;max-width:34rem!important}
+  #contact .cta-quote{font-size:.82rem!important;margin-top:1rem!important}
+  #contact .cta-actions-label{font-size:1rem!important}
+  #contact .cta-chip{font-size:1.05rem!important;padding:.6rem .95rem!important;border-radius:9px!important}
+  #contact .cta-chip svg{width:1.15rem!important;height:1.15rem!important}
+  #contact .cta-actions-inner{gap:.6rem!important}
+}
+@media(min-width:900px) and (max-width:1199px){
+  #contact .cta-chip{font-size:1rem!important}
+}
+
+/* keep the floating WhatsApp button off the footer email */
+@media(min-width:901px){
+  footer.site-footer .footer-right{margin-right:3.5rem}
+}
+
+/* ===== 16. "Our Services" section – match the design ===== */
+#services .section-heading>p:last-child{color:#144468;font-size:1rem;line-height:1.5;font-weight:400}
+#services .eyebrow-rule{font-size:1rem;color:#144468}
+
+#services .feature-card{
+  background:transparent!important;
+  border:2px solid #b3c0cc!important;
+  border-radius:22px!important;
+  box-shadow:none!important;filter:none!important;
+  padding:1.1rem 2rem 1.75rem!important;
+  display:flex!important;flex-direction:column!important;
+  align-items:stretch!important;
+  text-align:left!important;
+  gap:.35rem!important;min-height:0!important;
+}
+#services .feature-card:hover{transform:none;border-color:#8ea3b6!important}
+#services .feature-card .studio-focus-num{display:none!important}   /* removes the 01 / 02 / 03 */
+#services .feature-card .service-icon{width:84px!important;height:84px!important;margin:0 auto .15rem!important}
+#services .feature-card h3{
+  font-size:1.75rem!important;font-weight:500!important;line-height:1.2!important;
+  color:#144468;text-align:center!important;margin:.15rem 0 .35rem!important;
+}
+#services .feature-card>p:last-child{
+  text-align:left!important;max-width:none!important;margin:0!important;
+  font-size:1rem!important;line-height:1.4!important;color:#144468;
+}
+#services .explore-all{
+  font-size:1.35rem;font-weight:500;color:#144468;
+  padding:1.05rem 1.5rem!important;border-radius:16px!important;
+  border:1px solid #7a8b9b!important;gap:1rem;
+}
+#services .explore-all svg{width:1.3rem;height:1.3rem;color:#144468!important}
+@media(max-width:767px){
+  #services .feature-card{padding:1rem 1.25rem 1.4rem!important}
+  #services .feature-card .service-icon{width:70px!important;height:70px!important}
+  #services .feature-card h3{font-size:1.45rem!important}
+  #services .explore-all{font-size:1.1rem}
+}
+
+/* ===== 17. "Domains We Know Cold" dark section – match the design =====
+   (the founding-engineer illustration above it is NOT touched) */
+.section-pad.domains-dark{padding-top:3.5rem!important;padding-bottom:3rem!important}
+@media(min-width:1024px){
+  .section-pad.domains-dark{padding-top:5rem!important;padding-bottom:4rem!important}
+}
+.domains-dark .container-shell{gap:2.75rem!important}
+.domains-dark .section-heading{gap:.35rem!important}
+.domains-dark .section-heading h2{font-size:clamp(2rem,4.2vw,3.5rem)!important;line-height:1.1!important;color:#eef5f8}
+.domains-dark .section-heading>p:last-child{font-size:1rem!important;line-height:1.5!important}
+
+@media(min-width:900px){
+  .domains-dark .domain-columns{
+    grid-template-columns:repeat(4,auto)!important;
+    justify-content:space-between!important;
+    max-width:1200px;margin-inline:auto;gap:0!important;
+  }
+  .domains-dark .domain-col{padding:0 clamp(1rem,2.2vw,2.5rem)!important}
+  .domains-dark .domain-col:first-child{padding-left:0!important}
+  .domains-dark .domain-col:last-child{padding-right:0!important}
+  .domains-dark .domain-col+.domain-col::before{top:0!important;bottom:0!important;background:rgba(255,255,255,.75)!important;opacity:1}
+}
+.domains-dark .domain-col{display:flex;flex-direction:column;align-items:center}
+.domains-dark .domain-col h3{
+  font-size:clamp(1.05rem,1.5vw,1.4rem)!important;
+  padding:.35rem .9rem!important;border-radius:9px;
+  margin-bottom:1.6rem!important;text-align:center;
+}
+.domains-dark .domain-col ul{padding-left:0!important;gap:.6rem!important;width:fit-content;max-width:100%}
+.domains-dark .domain-col li{
+  font-size:clamp(.92rem,1.15vw,1.1rem)!important;color:#f2f8fb!important;line-height:1.4!important;
+}
+.domains-dark .domain-col li::before{background:#fff!important;width:5px!important;height:5px!important}
+
+@media(max-width:899px){
+  .domains-dark .domain-columns{gap:2rem 1rem!important}
+  .domains-dark .domain-col{padding:0 .5rem!important}
+}
+@media(max-width:560px){
+  .domains-dark .domain-columns{grid-template-columns:1fr!important;gap:1.75rem!important}
+}
+
+/* ===== 18. Logo band: uniform logo size, no stretching ===== */
+.logo-band{--logo-h:44px}
+@media(max-width:767px){.logo-band{--logo-h:36px}}
+.logo-band-track{align-items:center!important}
+.logo-band-track .asset-slot,
+.logo-band-track .asset-slot[data-label$="mysecondteacher.png"],
+.logo-band-track .asset-slot[data-label$="zenledger.png"],
+.logo-band-track .asset-slot[data-label$="jelajah-ilmu.png"],
+.logo-band-track .asset-slot[data-label$="bats.png"]{
+  width:auto!important;height:var(--logo-h)!important;flex:0 0 auto!important;
+}
+.logo-band-track .asset-slot[data-label$="mysecondteacher.png"]{height:calc(var(--logo-h) * 1.2)!important}
+.logo-band-track .asset-slot>img{
+  width:auto!important;height:100%!important;max-width:none!important;max-height:none!important;
+  object-fit:contain!important;
+}
+
+/* ===== 19. Less empty space above "Agentic Engineering" ===== */
+section[aria-label="Selected work by our engineers"]{padding-bottom:2.5rem!important}
+section[aria-label="Agentic Engineering"]{padding-top:2.5rem!important;padding-bottom:4rem!important}
+@media(max-width:767px){
+  section[aria-label="Selected work by our engineers"]{padding-bottom:1.5rem!important}
+  section[aria-label="Agentic Engineering"]{padding-top:1.5rem!important;padding-bottom:2.5rem!important}
+}
+
+/* ===== 20. One consistent colour + font system ===== */
+:root{
+  --gl-orange:#b05a29;        /* orange text / accents on light backgrounds */
+  --gl-orange-light:#c58a68;  /* light orange fills (chips, buttons) */
+  --gl-blue:#144468;          /* headings / brand blue */
+  --gl-blue-soft:#446987;     /* secondary text */
+  --gl-navy:#0b2338;          /* every dark band */
+  --gl-ui:"Segoe UI","Open Sans","Noto Sans",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+  --font-sans:var(--gl-ui);--font-heading:var(--gl-ui);--font-display:var(--gl-ui);
+}
+body,button,input,textarea,select,h1,h2,h3,h4,p,a,li,span,dt,dd{font-family:var(--gl-ui)}
+.pill-tech-text,.feed-body,.feed-head,.studio-focus-num{font-family:ui-monospace,Menlo,Consolas,monospace}
+
+/* light orange used everywhere the same */
+.cta-chip-wa{background:var(--gl-orange-light)!important}
+.studio-note>div span{background:var(--gl-orange-light)!important}
+footer.site-footer .footer-nav a:hover{color:var(--gl-orange-light)!important}
+.feed-line .n{color:var(--gl-orange-light)!important}
+.feed-caret{background:var(--gl-orange-light)!important}
+.orch-panel svg [stroke="#ef882b"]{stroke:var(--gl-orange-light)!important}
+.orch-panel .orch-p[style*="ef882b"]{background:var(--gl-orange-light)!important}
+/* orange text accents */
+.eyebrow,.orch-eyebrow,.hero-title .hero-accent,.team-role{color:var(--gl-orange)}
+/* all dark bands the same navy */
+.wave-divider svg path{fill:var(--gl-navy)}
+.domains-dark,.agent-feed-dark,.stat-band,.logo-band,.core-stack,.studio-note{background-color:var(--gl-navy)!important}
+/* headings share one blue */
+.hero-title,.section-heading h2,.cap-title,.shipped-card h3,.principle-card h3,.feature-card h3,.team-name{color:var(--gl-blue)}
+.domains-dark .section-heading h2,.agent-feed-dark .section-heading h2{color:#eef5f8}
+.feed-body *,.feed-head *,.pill-tech-text *{font-family:inherit}
+
+/* ===== 21. Hero pill (green dot) – stays on one line, dot centred ===== */
+.pill.pill-tech{align-items:center!important;max-width:100%;gap:.6rem}
+.pill-tech .status-dot{flex:0 0 7px;align-self:center;margin:0}
+.pill-tech-text{white-space:nowrap;display:inline-flex;align-items:center;line-height:1.2}
+.pill-tech .blink-cursor{line-height:1;margin-left:2px}
+@media(max-width:767px){
+  .pill.pill-tech{padding:.5rem .9rem!important}
+  .pill-tech-text{font-size:clamp(.6rem,2.9vw,.75rem)!important}
+  .pill-tech-sep{margin:0 .2rem}
+}
+
+/* ===== 22. "Stage experience" section – match the design ===== */
+.stage-band{align-items:center!important;gap:clamp(1.5rem,4vw,3.5rem)!important}
+.stage-copy .eyebrow{
+  color:#446987!important;font-size:.8rem!important;font-weight:500!important;
+  letter-spacing:.2em!important;margin:0 0 .5rem!important;
+}
+.stage-copy h2{
+  font-size:clamp(2rem,3.9vw,3.1rem)!important;font-weight:700!important;
+  line-height:1.08!important;letter-spacing:-.02em!important;color:#144468!important;
+  margin:0 0 .9rem!important;text-wrap:balance;
+}
+.stage-copy p:not(.eyebrow){
+  font-size:clamp(.95rem,1.35vw,1.1rem)!important;line-height:1.7!important;
+  color:#446987!important;font-weight:400!important;max-width:34rem;margin:0!important;
+}
+.stage-track{gap:.9rem!important}
+.stage-track li{
+  padding:1rem 1.5rem!important;border-radius:4px!important;
+  column-gap:1.1rem!important;align-items:center!important;
+  border:1px solid #d7e2e8;
+  background:linear-gradient(180deg,#fff,#f4f8fb)!important;
+  box-shadow:0 1px 2px rgba(16,32,51,.06)!important;
+}
+.stage-dot{width:.6rem!important;height:.6rem!important;background:#b05a29!important;align-self:center!important}
+.stage-track strong{font-size:clamp(1rem,1.5vw,1.2rem)!important;font-weight:700!important;color:#144468;line-height:1.25}
+.stage-track span:last-child{font-size:clamp(.92rem,1.3vw,1.08rem)!important;color:#446987!important;line-height:1.35}
+@media(max-width:767px){
+  .stage-track li{padding:.85rem 1rem!important}
+}
+
+/* ===== 23. "What we do" panel: slightly larger text, bold numbers ===== */
+.studio-panel .studio-focus-num{font-family:var(--gl-ui)!important;font-weight:700!important;color:#446987}
+@media(min-width:901px){
+  .studio-panel-head{font-size:40px!important}
+  .studio-focus-num{font-size:18px!important;margin:0 0 .25rem!important}
+  .studio-focus-card h3{font-size:24px!important;margin:0 0 .35rem!important}
+  .studio-focus-card p{font-size:18px!important;line-height:1.5!important}
+  .studio-panel-grid{gap:1.4rem!important}
+  .studio-panel-tagline{font-size:.82rem!important}
+  .studio-stats dt{font-size:38px!important}
+  .studio-stats dd{font-size:15px!important}
+}
+@media(max-width:900px){
+  .studio-focus-num{font-size:1.05rem!important}
+  .studio-focus-card h3{font-size:1.3rem!important}
+  .studio-focus-card p{font-size:1rem!important}
+}
