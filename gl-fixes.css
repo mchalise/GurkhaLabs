@@ -502,3 +502,48 @@ footer.site-footer .footer-nav a:hover{color:var(--gl-orange-light)!important}
   .studio-focus-card h3{font-size:1.3rem!important}
   .studio-focus-card p{font-size:1rem!important}
 }
+
+
+/* ===== 25. Eyebrow labels (FAQ, Our Services, Our Work, etc.) – bigger, bolder ===== */
+.eyebrow{
+  font-size:.9rem!important;
+  font-weight:700!important;
+  letter-spacing:.16em!important;
+}
+@media(max-width:640px){
+  .eyebrow{font-size:.78rem!important;letter-spacing:.12em!important}
+}
+
+/* ===== 26. Core Stack box: a little more room below the logos ===== */
+.core-stack{padding-bottom:2.5rem!important}
+@media(max-width:767px){
+  .core-stack{padding-bottom:1.75rem!important}
+}
+
+/* ===== 27. Footer: smaller, better-proportioned text ===== */
+footer.site-footer .footer-tagline{font-size:clamp(1rem,1.3vw,1.2rem)!important;font-weight:400!important}
+footer.site-footer .footer-location{font-size:.85rem!important}
+footer.site-footer .footer-nav a{font-size:clamp(.95rem,1.05vw,1.05rem)!important}
+footer.site-footer .footer-copy{font-size:.78rem!important}
+footer.site-footer .footer-company{font-size:.92rem!important}
+footer.site-footer .footer-right a{font-size:.85rem!important}
+footer.site-footer .footer-social a{width:2.6rem!important;height:2.6rem!important}
+footer.site-footer .footer-social svg{width:1.2rem!important;height:1.2rem!important}
+
+/* ===== 28. Leadership cards: equal heights, aligned dividers & social icons ===== */
+@media(min-width:768px){
+  .team-grid{align-items:stretch!important}
+  .team-grid>.reveal{display:flex!important}
+  .team-card{
+    height:100%!important;width:100%!important;
+    display:flex!important;flex-direction:column!important;
+  }
+  .team-body{
+    flex:1 1 auto!important;display:flex!important;
+    flex-direction:column!important;align-items:center!important;width:100%!important;
+  }
+  /* reserves the same vertical space whether a bio wraps 2 or 3 lines,
+     so the divider line + social icons land in the same spot on every card */
+  .team-bio{min-height:4.65em!important}
+  .team-social{margin-top:auto!important;padding-top:.9rem!important}
+}
