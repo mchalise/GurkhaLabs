@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gurkha Labs — Outsourcing &amp; Engineering Partnerships</title>
+<meta name="description" content="Add senior engineering capacity without months of hiring. Gurkha Labs helps businesses scale with dedicated web, mobile, and AI engineering teams.">
+<link rel="icon" href="/favicon.ico">
+<link rel="icon" type="image/png" href="gurkha-favicon.png">
+<link rel="apple-touch-icon" href="gurkha-favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #EEF5F8;
+    --card: #E8ECF0;
+    --navy-900: #0F304B;
+    --navy-800: #0C253A;
+    --navy-700: #133E60;
+    --heading: #154469;
+    --body-muted: #446987;
+    --body-muted-2: #62829B;
+    --light-on-dark: #E8ECF0;
+    --light-on-dark-2: #93A9BA;
+    --light-on-dark-3: #A9BDCE;
+    --accent: #B15B2B;
+    --accent-dark: #A15327;
+    --accent-btn: #CB9171;
+    --accent-soft: #DBB49D;
+    --whatsapp: #25D366;
+    --radius-lg: 20px;
+    --radius-md: 12px;
+    --radius-sm: 8px;
+    --maxw: 1180px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--body-muted);
+    font-family:'Inter', system-ui, sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Plus Jakarta Sans', sans-serif;
+    color:var(--heading);
+    margin:0;
+    line-height:1.15;
+  }
+  a{color:inherit; text-decoration:none;}
+  img,svg{display:block; max-width:100%;}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 32px;}
+  .mono{font-family:'JetBrains Mono', monospace;}
+  .eyebrow{
+    font-family:'JetBrains Mono', monospace;
+    color:var(--accent);
+    font-size:13px;
+    letter-spacing:0.02em;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:18px;
+  }
+  .eyebrow .rule{width:28px; height:1px; background:var(--accent); opacity:.6; display:inline-block;}
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:14px 26px;
+    border-radius:999px;
+    font-weight:600;
+    font-size:15px;
+    cursor:pointer;
+    border:1.5px solid transparent;
+    transition:transform .15s ease, box-shadow .15s ease, background .15s ease;
+    white-space:nowrap;
+  }
+  .btn:hover{transform:translateY(-2px);}
+  .btn-dark{background:var(--navy-900); color:#fff;}
+  .btn-dark:hover{box-shadow:0 10px 24px rgba(15,48,75,.28);}
+  .btn-outline{background:transparent; color:var(--heading); border-color:rgba(21,68,105,.35);}
+  .btn-outline:hover{border-color:var(--heading); background:rgba(21,68,105,.05);}
+  .hero-ctas .btn-dark{border-radius:32px 0 0 0;}
+  .hero-ctas .btn-outline{border-radius:0 0 32px 0;}
+  .btn-accent{background:var(--accent-btn); color:#fff;}
+  .btn-accent:hover{box-shadow:0 10px 24px rgba(203,145,113,.4);}
+  .btn-ghost-light{background:rgba(255,255,255,.08); color:#fff; border-color:rgba(255,255,255,.25);}
+  .btn-ghost-light:hover{background:rgba(255,255,255,.16);}
+  .btn-whatsapp{background:var(--accent-btn); color:#fff;}
+
+  /* ===== Header ===== */
+  header{
+  position:static;
+  padding:20px 24px 0;
+}
+
+.nav-pill{
+  max-width:var(--maxw);
+  margin:0 auto;
+  background:rgba(255,255,255,.85);
+  backdrop-filter:blur(10px);
+  border-radius:999px;
+  padding:14px 28px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  box-shadow:0 10px 30px rgba(15,48,75,.08);
+}
+
+  .logo{display:flex; align-items:center; gap:10px; font-family:'Plus Jakarta Sans',sans-serif; font-weight:800; font-size:19px; letter-spacing:-0.01em;}
+  .logo .mark{
+    width:38px; height:38px; border-radius:10px;
+    background:linear-gradient(135deg, var(--navy-900), var(--navy-700));
+    display:flex; align-items:center; justify-content:center;
+    color:#fff; font-size:17px; position:relative; overflow:hidden;
+  }
+  .logo .mark span:first-child{color:#fff;}
+  .logo .mark span.acc{color:var(--accent-soft);}
+  .logo .word .top{color:var(--heading);}
+  .logo .word .bottom{color:var(--accent);}
+  .logo .word{display:flex; flex-direction:column; line-height:1; font-size:16px;}
+  .badge{
+    font-family:'JetBrains Mono', monospace;
+    color:var(--accent);
+    font-size:13px;
+    display:flex; align-items:center; gap:6px;
+  }
+  .badge::before{content:"●"; color:#3fbf60; font-size:9px;}
+
+  /* ===== Hero ===== */
+  .hero{padding:96px 0 60px;}
+  .hero-grid{display:grid; grid-template-columns:1.05fr .95fr; gap:56px; align-items:center;}
+  .hero h1{font-size:48px; font-weight:800; letter-spacing:-0.02em;}
+  .hero h1 .accent-text{color:var(--accent);}
+  .hero p.lead{font-size:17px; margin:26px 0 34px; max-width:520px; color:var(--body-muted);}
+  .hero-ctas{display:flex; gap:16px; flex-wrap:wrap; margin-bottom:30px;}
+  .hero-location{font-style:italic; font-size:14px; color:var(--body-muted-2);}
+
+  .hero-art{position:relative; aspect-ratio:1/0.85;}
+  .hero-art .blob{
+    position:absolute; inset:0;
+    background:radial-gradient(circle at 50% 45%, #ffffff 0%, #ffffff 55%, transparent 78%);
+    border-radius:50%;
+  }
+  .hero-art svg{position:relative; z-index:1; width:100%; height:100%;}
+
+  /* ===== Stats bar (full-bleed) ===== */
+ /* ===== Stats bar (full-bleed) ===== */
+.stats-section {
+  background: var(--navy-900);
+  position: relative;
+  padding: 80px 0;
+  margin-top: 24px;
+  width: 100%;
+}
+.stats-grid {
+  display: grid; 
+  grid-template-columns: repeat(4, 1fr); 
+  max-width: var(--maxw); 
+  margin: 0 auto; 
+  padding: 0 20px;
+}
+.stat {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 40px;
+  box-sizing: border-box;
+}
+.stat:not(:last-child) {
+  border-right: 1px solid rgba(255, 255, 255, 0.2); 
+  border-left: none;
+}
+.stat:first-child {
+  border-left: none;
+}
+.stat .eyebrow {
+  color: #cb855f !important; 
+  margin-bottom: 24px; 
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+.stat .eyebrow .rule {
+  display: none;
+}
+.stat h3 {
+  color: #fff; 
+  font-size: 32px; 
+  font-weight: 700; 
+  margin: 0 0 20px 0;
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+}
+.stat p {
+  color: #94a3b8; 
+  font-size: 14px; 
+  margin: 0; 
+  line-height: 1.6;
+}
+.stats-wave { position: absolute; left: 0; right: 0; bottom: -1px; width: 100%; height: 70px; line-height: 0; }
+.stats-wave svg { width: 100%; height: 100%; display: block; }
+
+@media (max-width: 992px) {
+  .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 40px 0; }
+  .stat:nth-child(2) { border-right: none; }
+}
+@media (max-width: 600px) {
+  .stats-grid { grid-template-columns: 1fr; }
+  .stat { border-right: none !important; border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding: 24px 10px; }
+  .stat:last-child { border-bottom: none; }
+}
+
+
+  /* ===== Why section ===== */
+  .why{padding:70px 0 90px;}
+  .why-head{max-width:640px; margin-bottom:40px;}
+  .why-head h2{font-size:34px; font-weight:800; margin-bottom:18px;}
+  .why-head p{font-size:16px;}
+
+  .cards{display:grid; grid-template-columns:1fr 1fr; gap:22px; margin-bottom:36px;}
+  .card{
+    background:var(--card);
+    border:1px solid rgba(70,105,135,.18);
+    border-radius:var(--radius-md);
+    padding:32px;
+  }
+  .card .num{font-family:'JetBrains Mono',monospace; color:var(--accent); font-size:14px; margin-bottom:14px; display:block;}
+  .card h3{font-size:20px; font-weight:700; margin-bottom:10px;}
+  .card p{margin:0; font-size:15px;}
+
+    .proof-banner {
+    background: var(--navy-900);
+    border-left: 6px solid #cb855f !important; /* Unified theme copper accent line */
+    border-radius: var(--radius-md);
+    padding: 34px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+    box-sizing: border-box; /* Locks padding layout inside container bounds */
+    width: 100%;
+  }
+  .proof-banner p {
+    color: var(--light-on-dark-2); 
+    font-size: 16px; 
+    margin: 0; 
+    max-width: 720px; 
+    flex: 1 1 auto; 
+    min-width: 0;
+  }
+  .proof-banner p b, .proof-banner p strong { color: #fff; font-weight: 600; }
+
+  /* Force-render the Portfolio Button Background and White Text */
+  .proof-banner a.btn-portfolio {
+    background: #cb855f !important;
+    background-color: #cb855f !important;
+    color: #ffffff !important;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 14px 24px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 500;
+    text-decoration: none;
+    box-sizing: border-box;
+    transition: opacity 0.2s ease;
+    white-space: nowrap;
+    flex-shrink: 0;
+    border: none !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+  .proof-banner a.btn-portfolio:hover { opacity: 0.9 !important; }
+  .btn-portfolio .btn-icon { width: 18px; height: 18px; stroke: #ffffff !important; flex-shrink: 0; }
+
+  /* Responsive Rule to Fix iPhone / Small Mobile Screens */
+  @media (max-width: 768px) {
+    .proof-banner {
+      flex-direction: column;   /* Stacks text on top, button on bottom */
+      align-items: flex-start;  /* Aligns text left cleanly */
+      padding: 30px 24px;
+      gap: 24px;
+    }
+    .proof-banner a.btn-portfolio {
+      width: 100%;              /* Spans full card width on mobile for clean look */
+      white-space: normal;      /* Prevents text breaking errors on very small screens */
+      text-align: center;
+    }
+  }
+
+
+  /* ===== Technical scope ===== */
+  .scope{padding:80px 0;}
+  .scope-grid{display:grid; grid-template-columns:.85fr 1.15fr; gap:64px;}
+  .scope-left h2{font-size:34px; font-weight:800; margin:16px 0 20px;}
+  .scope-left p{font-size:15px; margin-bottom:34px;}
+  .stack-label{font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--accent); margin-bottom:14px; display:block;}
+  .tags{display:flex; flex-wrap:wrap; gap:10px;}
+  .tag{
+    background:var(--navy-700);
+    color:#fff;
+    font-family:'JetBrains Mono',monospace;
+    font-size:13px;
+    padding:8px 16px;
+    border-radius:8px;
+  }
+
+  .scope-list{
+    max-height:440px;
+    overflow-y:auto;
+    padding-right:20px;
+    scrollbar-width:thin;
+    scrollbar-color:var(--body-muted-2) transparent;
+  }
+  .scope-list::-webkit-scrollbar{width:6px;}
+  .scope-list::-webkit-scrollbar-thumb{background:var(--body-muted-2); border-radius:3px;}
+  .scope-item{padding-bottom:34px; margin-bottom:34px; border-bottom:1px solid rgba(21,68,105,.1);}
+  .scope-item:last-child{border-bottom:none; margin-bottom:0;}
+  .scope-item .row{display:flex; justify-content:space-between; align-items:baseline; margin-bottom:8px;}
+  .scope-item .tagnum{font-family:'JetBrains Mono',monospace; color:#0c385b; font-size:13px;}
+  .scope-item .surface{font-family:'JetBrains Mono',monospace; color:var(--body-muted-2); font-size:11px; letter-spacing:.04em;}
+  .scope-item h3{font-size:22px; font-weight:700; margin-bottom:10px;}
+  .scope-item p{margin:0; font-size:15px;}
+
+  /* ===== CTA ===== */
+  .cta-section{padding:20px 0 90px;}
+  .cta-card{
+    background:linear-gradient(120deg, var(--navy-800), var(--navy-900));
+    border-radius:var(--radius-lg);
+    padding:48px 48px;
+    display:grid;
+    grid-template-columns:1.3fr .9fr;
+    gap:32px;
+    align-items:center;
+  }
+  .cta-left .eyebrow{color:var(--accent-soft);}
+  .cta-left .eyebrow .rule{background:var(--accent-soft);}
+  .cta-left h2{color:#fff; font-size:32px; font-weight:800; margin-bottom:20px;}
+  .cta-quote{
+    border-left:2px solid var(--light-on-dark-3);
+    padding-left:18px;
+    color:var(--light-on-dark-3);
+    font-style:italic;
+    font-size:15px;
+  }
+  .cta-quote footer{margin-top:8px; font-style:normal; color:var(--light-on-dark-2); font-size:13px;}
+  .cta-right{text-align:right;}
+  .cta-right .label{font-family:'JetBrains Mono',monospace; color:var(--light-on-dark-2); font-size:12px; letter-spacing:.08em; margin-bottom:16px; display:block;}
+  .cta-right .btn{display:flex; width:100%; justify-content:center; margin-bottom:14px;}
+  .cta-right .btn-ghost-light{justify-content:center;}
+
+  /* ===== Footer (matches gurkhalabs.com main-site footer sizing) ===== */
+  footer.site-footer{background:var(--navy-900); padding:56px 0 24px; color:var(--light-on-dark);}
+
+  .footer-top{
+    display:grid;
+    grid-template-columns:1fr auto 1fr;
+    gap:40px;
+    align-items:start;
+    padding-bottom:32px;
+  }
+
+  .footer-brand{max-width:320px;}
+  .footer-desc{margin:0 0 12px; font-size:clamp(1rem,1.3vw,1.15rem); font-weight:400; color:#fff; line-height:1.5;}
+  .footer-loc{margin:0; font-size:.85rem; color:var(--light-on-dark-2); line-height:1.6;}
+
+  .footer-center{display:flex; flex-direction:column; align-items:center; gap:1.6rem;}
+  .footer-logo-box{
+    background:#fff;
+    border-radius:9px;
+    padding:9px 14px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    box-shadow:0 10px 24px rgba(0,0,0,.15);
+  }
+  .footer-logo-box img{height:38px; width:auto; display:block;}
+  .footer-nav{display:flex; gap:2.5rem;}
+  .footer-nav a{font-size:clamp(.95rem,1.05vw,1.05rem); font-weight:500; color:#fff;}
+  .footer-nav a:hover{color:var(--accent-soft);}
+
+  .footer-contact{display:flex; flex-direction:column; align-items:flex-start; gap:.95rem; justify-self:end;}
+  .footer-link{display:flex; align-items:center; gap:.6rem; font-size:.85rem; color:#fff;}
+  .footer-contact>.footer-link:first-child{font-size:.92rem; letter-spacing:.03em;}
+  .footer-link .ico{width:1.3rem; height:1.3rem; flex-shrink:0; color:var(--accent-soft); display:flex; align-items:center; justify-content:center;}
+  .footer-link .ico svg{width:100%; height:100%;}
+  .socials{display:flex; gap:.9rem; margin-top:.35rem;}
+  .socials a{
+    width:2.6rem; height:2.6rem; border-radius:50%; background:#fff; color:var(--navy-900);
+    display:flex; align-items:center; justify-content:center;
+    transition:transform .2s ease, background .2s ease;
+  }
+  .socials a svg{width:1.2rem; height:1.2rem;}
+  .socials a:hover{background:var(--accent-soft); transform:translateY(-2px);}
+
+  .footer-bottom{border-top:1px solid rgba(255,255,255,.08); padding-top:20px; text-align:center; font-size:.78rem; color:#ffffff;}
+  .footer-bottom p{margin:0;}
+
+  .wa-float{
+  position:fixed; bottom:26px; right:26px; z-index:60;
+  width:56px; height:56px; border-radius:50%;
+  background:var(--whatsapp); color:#fff;
+  display:flex; align-items:center; justify-content:center;
+  font-size:26px;
+  box-shadow:0 10px 24px rgba(37,211,102,.4);
+  transition:transform .15s ease;
+}
+
+.wa-float svg{
+  width:30px;
+  height:30px;
+  display:block;
+}
+
+.wa-float:hover{
+  transform:scale(1.08);
+}
+
+
+  /* ===== Responsive ===== */
+  @media (max-width: 1080px){
+    .wrap{padding:0 24px;}
+    .hero h1{font-size:42px;}
+  }
+  @media (max-width: 980px){
+    .hero-grid{grid-template-columns:1fr;}
+    .hero-art{order:-1; max-width:420px; margin:0 auto 20px;}
+    .stats-grid{grid-template-columns:1fr 1fr; row-gap:34px; padding:0 24px;}
+    .stat{border-left:none; border-top:1px solid rgba(255,255,255,.12); padding-top:24px;}
+    .stat:nth-child(1),.stat:nth-child(2){border-top:none; padding-top:0;}
+    .cards{grid-template-columns:1fr;}
+    .scope-grid{grid-template-columns:1fr; gap:40px;}
+    .scope-list{max-height:none; overflow:visible; padding-right:0;}
+    .cta-card{grid-template-columns:1fr;}
+    .cta-right{text-align:left;}
+    .cta-right .btn{width:auto; display:inline-flex;}
+    .footer-top{grid-template-columns:1fr; text-align:center; justify-items:center; gap:32px;}
+    .footer-brand{max-width:420px;}
+    .footer-contact{align-items:center; justify-self:center;}
+    .footer-contact .footer-link{justify-content:center;}
+  }
+  @media (max-width: 768px){
+    .hero{padding:64px 0 44px;}
+    .hero h1{font-size:36px;}
+    .hero-ctas{gap:12px;}
+    .stats-section{padding:44px 0 76px; margin-top:16px;}
+    .why{padding:56px 0 70px;}
+    .scope{padding:56px 0;}
+    .proof-banner{padding:28px 28px 28px 24px;}
+  }
+  @media (max-width: 620px){
+    .wrap{padding:0 20px;}
+    header{padding:14px 14px 0;}
+    .nav-pill{padding:12px 18px; border-radius:20px;}
+    .badge{display:none;}
+    .hero{padding:48px 0 40px;}
+    .hero h1{font-size:30px;}
+    .hero-ctas .btn{padding:13px 20px; font-size:14px;}
+    .stats-grid{grid-template-columns:1fr; row-gap:26px; padding:0 20px;}
+    .stat{border-top:none !important; padding-top:0 !important;}
+    .stat + .stat{border-top:1px solid rgba(255,255,255,.12) !important; padding-top:20px !important;}
+    .proof-banner{flex-direction:column; align-items:flex-start; flex-wrap:wrap; padding:24px 20px 24px 18px;}
+    .proof-banner .btn-accent{white-space:normal; width:100%; justify-content:center; text-align:center;}
+    .cta-card{padding:32px 24px;}
+    .why-head h2, .scope-left h2{font-size:26px;}
+    .cta-left h2{font-size:26px;}
+    .tags{gap:8px;}
+    .tag{font-size:12px; padding:7px 12px;}
+    .wa-float{width:50px; height:50px; font-size:22px; bottom:18px; right:18px;}
+    .footer-nav{gap:20px; flex-wrap:wrap; justify-content:center;}
+  }
+  @media (max-width: 400px){
+    .hero h1{font-size:26px;}
+    .hero-ctas{flex-direction:column; align-items:flex-start;}
+    .hero-ctas .btn{width:100%; justify-content:center;}
+  }
+
+  /* ==========================================================================
+   Contact / CTA Section Styling Update
+   ========================================================================== */
+
+/* Main Card Background & Layout */
+.cta-card {
+  background-color: #0b253a !important; /* Deep dark blue background */
+  border-radius: 12px;
+  padding: 40px 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+}
+
+/* Quote Line Fix */
+.cta-quote {
+  border-left: 1px solid rgba(255, 255, 255, 0.4);
+  padding-left: 16px;
+  margin: 16px 0 0 0;
+  font-style: italic;
+  color: #e2e8f0;
+}
+
+.cta-quote footer {
+  font-style: normal;
+  font-size: 13px;
+  color: #94a3b8;
+  margin-top: 6px;
+}
+
+/* Right Side Button Panel Layout */
+.cta-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 14px;
+  min-width: 260px;
+}
+
+.cta-right .label {
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: #ffffff;
+  margin-bottom: 2px;
+}
+
+/* Universal Button Structure */
+.cta-right .btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 14px 24px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  text-decoration: none;
+  box-sizing: border-box;
+  transition: opacity 0.2s ease;
+}
+
+.cta-right .btn:hover {
+  opacity: 0.9;
+}
+
+/* SVG Icon Sizing */
+.btn-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+/* WhatsApp Button (Copper/Orange Variant) */
+.btn-whatsapp {
+  background-color: #cb855f !important; 
+  color: #ffffff !important;
+  border: none !important;
+}
+
+/* Email Button (Muted Light Steel Variant) */
+.btn-email {
+  background-color: #9eadb8 !important; 
+  color: #0b253a !important;
+  border: none !important;
+}
+
+/* Responsive Rule for Mobile Screens */
+@media (max-width: 768px) {
+  .cta-card {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 32px 24px;
+    gap: 32px;
+  }
+  
+  .cta-right {
+    align-items: flex-start;
+    width: 100%;
+  }
+}
+
+/* Force-render the Portfolio Button Background and White Text */
+.proof-banner a.btn-portfolio,
+a.btn-portfolio {
+  background-color: #cb855f !important; /* Solid copper orange background */
+  color: #ffffff !important;            /* Pure white text and icon color */
+  display: inline-flex !important;      
+  border: none !important;              
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
+}
+
+/* Ensure the SVG icon also inherits the white text color */
+.btn-portfolio .btn-icon {
+  stroke: #ffffff !important;
+  color: #ffffff !important;
+}
+
+/* Hover state transition */
+.proof-banner a.btn-portfolio:hover,
+a.btn-portfolio:hover {
+  opacity: 0.9 !important;
+}
+
+
+</style>
+</head>
+<body>
+
+<header>
+ <div class="nav-pill" style="position: static;">
+  <div class="logo">
+    <a href="outsourcing.html" aria-label="Gurkha Labs Outsourcing">
+      <img src="gurkha-logo.png" alt="Gurkha Labs" style="height:56px; width:auto; display:block;">
+    </a>
+  </div>
+
+  <div class="badge mono">kathmandu_studio//available_worldwide_</div>
+</div>
+
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <div class="eyebrow"><span>international_partnerships // outsourcing</span></div>
+        <h1>Add senior engineering capacity <span class="accent-text">without months of hiring.</span></h1>
+        <p class="lead">Gurkha Labs helps businesses scale, access skilled talent, and deliver web, mobile, and AI products faster — without the cost or complexity of building an internal team from scratch.</p>
+        <div class="hero-ctas">
+          <a href="#contact" class="btn btn-dark">Connect With Us →</a>
+          <a href="#services" class="btn btn-outline">Explore what we do</a>
+        </div>
+        <p class="hero-location">Kathmandu, Nepal · Serving startups and businesses across the US, UK, Europe, Australia and Nepal</p>
+      </div>
+
+     <div class="hero-art" style="display:flex; align-items:center; justify-content:center;">
+  <img 
+    src="work.png" 
+    alt="Outsourcing work" 
+    style="width:100%; max-width:480px; height:auto; display:block; object-fit:contain;"
+  >
+</div>
+
+      </div>
+    </div>
+  </section>
+
+<!-- STATS -->
+<section class="stats-section">
+  <div class="stats-grid">
+    <div class="stat">
+      <div class="eyebrow"><span class="rule"></span>// EXPERIENCE</div>
+      <h3>Senior-led</h3>
+      <p>100% Staff &amp; Principal level contributors on day one.</p>
+    </div>
+    <div class="stat">
+      <div class="eyebrow"><span class="rule"></span>// PROTOCOLS</div>
+      <h3>50+ integrations</h3>
+      <p>Exchange and blockchain integrations shipped.</p>
+    </div>
+    <div class="stat">
+      <div class="eyebrow"><span class="rule"></span>// MATURITY</div>
+      <h3>MVP &rarr; Series B</h3>
+      <p>Scalable architectures engineered to withstand hypergrowth.</p>
+    </div>
+    <div class="stat">
+      <div class="eyebrow"><span class="rule"></span>// SURFACE</div>
+      <h3>Web / Mobile / AI</h3>
+      <p>Unified cross-platform execution across entire product surfaces.</p>
+    </div>
+  </div>
+</section>
+
+
+  <!-- WHY -->
+  <section class="why">
+    <div class="wrap">
+      <div class="why-head">
+        <div class="eyebrow"><span class="rule"></span>WHY_OUTSOURCE<span class="rule"></span></div>
+        <h2>Why Gurkha Labs outsourcing</h2>
+        <p>Growing a product usually means growing a team — but hiring locally takes time, and specialized skills aren't always easy to find nearby. Gurkha Labs gives you direct access to senior engineers who can start fast, without the overhead of a full in-house build-out.</p>
+      </div>
+
+      <div class="cards">
+        <div class="card">
+          <span class="num">01</span>
+          <h3>Cost efficiency</h3>
+          <p>Senior-level engineering without the cost of maintaining a large local team.</p>
+        </div>
+        <div class="card">
+          <span class="num">02</span>
+          <h3>Best tech talent</h3>
+          <p>Work directly with experienced engineers specialized in AI/ML, web, and mobile — no junior hand-offs.</p>
+        </div>
+        <div class="card">
+          <span class="num">03</span>
+          <h3>Fast onboarding</h3>
+          <p>Start working with your team in days, not months.</p>
+        </div>
+        <div class="card">
+          <span class="num">04</span>
+          <h3>Direct communication</h3>
+          <p>No account managers or middle layers — you talk directly to the engineers building your product.</p>
+        </div>
+      </div>
+
+   <div class="proof-banner">
+  <div class="proof-content">
+    <p>Our engineers have carried products <strong>from MVP to Series B</strong>, built <strong>SEC-compliant systems</strong>, and shipped platforms used by <strong>federal investigators</strong> and <strong>national-scale EdTech</strong> providers.</p>
+  </div>
+  
+  <a href="https://gurkhalabs.com" target="_blank" rel="noopener noreferrer" class="btn btn-portfolio">
+    <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+      <circle cx="12" cy="12" r="3"></circle>
+    </svg>
+    See our full portfolio &rarr; Gurkhalabs.com
+  </a>
+</div>
+
+    </div>
+  </section>
+
+  <!-- TECHNICAL SCOPE -->
+  <section class="scope" id="services">
+    <div class="wrap scope-grid">
+      <div class="scope-left">
+        <div class="eyebrow"><span class="rule"></span>TECHNICAL SCOPE &amp; DOMAINS<span class="rule"></span></div>
+        <h2>Engineering capability without the handoff maze.</h2>
+        <p>We take full ownership of the technical surface. From low-latency backend architectures to pixel-perfect design systems and production AI inference pipelines, our craft spans the entire modern stack.</p>
+        <span class="stack-label">// CORE ECOSYSTEM STACK</span>
+        <div class="tags">
+          <span class="tag">React</span>
+          <span class="tag">Next.js</span>
+          <span class="tag">TypeScript</span>
+          <span class="tag">Go</span>
+          <span class="tag">Python</span>
+          <span class="tag">Node.js</span>
+          <span class="tag">Docker</span>
+          <span class="tag">AWS</span>
+          <span class="tag">Ruby on Rails</span>
+          <span class="tag">PostgreSQL</span>
+        </div>
+      </div>
+
+      <div class="scope-list">
+        <div class="scope-item">
+          <div class="row"><span class="tagnum">// 01</span><span class="surface">HIGH-THROUGHPUT</span></div>
+          <h3>Website Development</h3>
+          <p>Modern React and Next.js applications built for speed, scale, and reliability. We architect secure APIs, scalable infrastructure, and responsive experiences that perform seamlessly across every device.</p>
+        </div>
+        <div class="scope-item">
+          <div class="row"><span class="tagnum">// 02</span><span class="surface">CROSS-PLATFORM</span></div>
+          <h3>Mobile applications</h3>
+          <p>Native iOS (Swift), Android (Kotlin), and high-performance Flutter builds. We architect offline-first synchronization, secure biometric enclaves, and frictionless localized device integrations.</p>
+        </div>
+        <div class="scope-item">
+          <div class="row"><span class="tagnum">// 03</span><span class="surface">AI / ML</span></div>
+          <h3>AI &amp; ML integration</h3>
+          <p>Production inference pipelines, LLM-backed features, and custom model integrations. We build the infrastructure to ship AI capability that holds up under real traffic, not just a demo.</p>
+        </div>
+        <div class="scope-item">
+          <div class="row"><span class="tagnum">// 04</span><span class="surface">EXTENDED TEAM</span></div>
+          <h3>Technical support &amp; team augmentation</h3>
+          <p>Embedded engineers, technical co-founders, and ongoing support for teams that need extra senior capacity without a lengthy hiring cycle.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section" id="contact">
+    <div class="wrap">
+      <div class="cta-card">
+        <div class="cta-left">
+          <div class="eyebrow"><span>get_in_touch</span></div>
+          <h2>Let's build something together.</h2>
+          <blockquote class="cta-quote">
+            "If you're looking for a trusted technology partner, we'd love to hear about your project."
+            <footer>— Anmol Chalise, Co-Founder</footer>
+          </blockquote>
+        </div>
+        <div class="cta-right">
+  <span class="label">LET'S TALK</span>
+  
+  <!-- Updated WhatsApp Button with Inline SVG Icon and your Number -->
+  <a href="https://wa.me/9779745627055" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp">
+    <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12.012 2c-5.508 0-9.988 4.479-9.988 9.987 0 1.763.461 3.42 1.264 4.871l-1.344 4.908 5.023-1.317c1.403.765 2.998 1.171 4.697 1.171 5.509 0 9.988-4.48 9.988-9.988C22 6.479 17.52 2 12.012 2zm5.792 14.2c-.244.689-1.22 1.261-1.688 1.347-.468.085-1.077.122-1.724-.085-.403-.13-1.57-.611-3.003-1.251-5.74-2.557-6.26-6.602-6.29-6.917-.03-.314-.233-1.554.912-2.701.373-.374.757-.428.988-.428.23 0 .46.012.663.023.216.012.5.012.784.7.3.738 1.025 2.502 1.111 2.684.088.182.147.394.027.629-.118.236-.182.385-.363.597-.181.21-.383.471-.548.631-.183.17-.376.354-.162.716.213.364.947 1.562 2.032 2.529 1.393 1.24 2.569 1.625 2.934 1.808.365.181.579.152.793-.097.216-.25.922-1.076 1.172-1.442.25-.365.5-.304.843-.182.342.122 2.164 1.02 2.526 1.202.361.182.602.268.69.418.087.15.087.864-.157 1.553z"/>
+    </svg>
+    Chat on WhatsApp
+  </a>
+  
+  <!-- Updated Email Button with Inline SVG Icon -->
+  <a href="mailto:contact@gurkhalabs.com" class="btn btn-email">
+    <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+      <polyline points="22,6 12,13 2,6"></polyline>
+    </svg>
+    contact@gurkhalabs.com
+  </a>
+</div>
+
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-top">
+
+    <div class="footer-brand">
+      <p class="footer-desc">Senior-led software studio building web, mobile &amp; AI products.</p>
+      <p class="footer-loc">
+        Kathmandu, Nepal · Serving clients worldwide<br>
+        Kapan, Kathmandu, Nepal
+      </p>
+    </div>
+
+    <div class="footer-center">
+      <a href="index.html" class="footer-logo-box" aria-label="Gurkha Labs home">
+        <img src="gurkha-logo.png" alt="Gurkha Labs">
+      </a>
+      <nav class="footer-nav">
+        <!-- <a href="index.html">Gurkha Labs</a> -->
+      </nav>
+    </div>
+
+    <div class="footer-contact">
+      <div class="footer-link">
+        <span class="ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 22V4a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v18"/><path d="M14 9h4a1 1 0 0 1 1 1v12"/><path d="M9 6h.01M9 10h.01M9 14h.01M9 18h.01"/><path d="M2 22h20"/></svg>
+        </span>
+        Gurkha Labs Pvt. Ltd
+      </div>
+      <a href="privacy-policy.html" class="footer-link">
+        <span class="ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"/></svg>
+        </span>
+        Privacy Policy
+      </a>
+      <a href="mailto:contact@gurkhalabs.com" class="footer-link">
+        <span class="ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+        </span>
+        Contact@gurkhalabs.com
+      </a>
+      <div class="socials">
+        <a href="https://www.linkedin.com/company/gurkha-labs/" target="_blank" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.6v1.7h.05c.5-.95 1.75-1.95 3.6-1.95 3.85 0 4.55 2.55 4.55 5.85V21h-4v-5.35c0-1.3-.02-2.95-1.8-2.95-1.8 0-2.1 1.4-2.1 2.85V21H9z"/></svg></a>
+
+       
+        <!-- <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 22v-8h2.7l.4-3.2h-3.1V8.7c0-.93.26-1.56 1.6-1.56h1.7V4.28C15.98 4.2 15.06 4.1 13.98 4.1c-2.26 0-3.8 1.38-3.8 3.9v2.8H7.5v3.2h2.68V22h3.32z"/></svg></a> -->
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2026 Gurkha Labs Pvt. Ltd. All rights reserved.</p>
+  </div>
+</footer>
+
+
+<a class="wa-float" href="https://wa.me/9779745627055" target="_blank" rel="noopener noreferrer" aria-label="Message Gurkha Labs on WhatsApp" title="Message Gurkha Labs on WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"></path>
+  </svg>
+</a>
+
+
+</body>
+</html>
