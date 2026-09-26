@@ -392,17 +392,14 @@ footer.site-footer .footer-social svg{width:1.4rem;height:1.4rem}
 .logo-band{--logo-h:44px}
 @media(max-width:767px){.logo-band{--logo-h:36px}}
 .logo-band-track{align-items:center!important}
-.logo-band-track .asset-slot,
-.logo-band-track .asset-slot[data-label$="mysecondteacher.png"],
-.logo-band-track .asset-slot[data-label$="zenledger.png"],
-.logo-band-track .asset-slot[data-label$="jelajah-ilmu.png"],
-.logo-band-track .asset-slot[data-label$="bats.png"]{
+.logo-band-track .asset-slot{
   width:auto!important;height:var(--logo-h)!important;flex:0 0 auto!important;
 }
 .logo-band-track .asset-slot[data-label$="mysecondteacher.png"]{height:calc(var(--logo-h) * 1.2)!important}
-.logo-band-track .asset-slot>img{
+.logo-band-track .asset-slot>img,
+.logo-band-track .asset-slot>svg{
   width:auto!important;height:100%!important;max-width:none!important;max-height:none!important;
-  object-fit:contain!important;
+  object-fit:contain!important;display:block!important;
 }
 
 /* ===== 19. Less empty space above "Agentic Engineering" ===== */
@@ -546,4 +543,163 @@ footer.site-footer .footer-social svg{width:1.2rem!important;height:1.2rem!impor
      so the divider line + social icons land in the same spot on every card */
   .team-bio{min-height:4.65em!important}
   .team-social{margin-top:auto!important;padding-top:.9rem!important}
+}
+
+/* Section 31 removed: the Zen logo is now pasted inline in index.html
+   with its own correct colors (white wordmark, green icon), so no
+   CSS filter is needed here anymore. */
+
+/* ===== 32. New hero illustration: correct aspect ratio + larger size
+   (the old rules were tuned for the previous 585x390 image; the new
+   file is roughly 1110x960, so the box needs a different shape) ===== */
+@media(min-width:768px){
+  .hero-art{aspect-ratio:1110/960!important}
+  .hero-art>img{
+    width:100%!important;height:100%!important;
+    max-width:680px!important;object-fit:contain!important;
+  }
+}
+@media(min-width:1280px){
+  .hero-art>img{max-width:720px!important}
+}
+
+/* ===== 33. Hero: illustration a bit bigger, and tighten vertical rhythm
+   so the pill sits closer to the nav and "Built by engineers" rises ===== */
+@media(min-width:768px){
+  .hero-art>img{max-width:740px!important}
+  .hero-shell{padding-top:1.75rem!important}   /* hero-grid below already adds its own clearance under the fixed nav */
+  .hero-grid{padding-bottom:2.25rem!important}
+}
+@media(min-width:1280px){
+  .hero-art>img{max-width:800px!important}
+  .hero-grid{padding-top:5rem!important}
+}
+
+/* ===== 34. Our Services: scale everything down to match the rest of the site ===== */
+#services .feature-card{
+  padding:.9rem 1.5rem 1.4rem!important;
+  gap:.3rem!important;
+}
+#services .feature-card .service-icon{
+  width:56px!important;height:56px!important;
+}
+#services .feature-card h3{
+  font-size:1.3rem!important;
+}
+#services .feature-card>p:last-child{
+  font-size:.92rem!important;
+  line-height:1.5!important;
+}
+#services .explore-all{
+  font-size:1rem!important;
+  padding:.8rem 1.35rem!important;
+  border-radius:12px!important;
+}
+#services .explore-all svg{width:1.1rem!important;height:1.1rem!important}
+
+@media(max-width:767px){
+  #services .feature-card{padding:.85rem 1.1rem 1.2rem!important}
+  #services .feature-card .service-icon{width:48px!important;height:48px!important}
+  #services .feature-card h3{font-size:1.15rem!important}
+  #services .feature-card>p:last-child{font-size:.88rem!important}
+  #services .explore-all{font-size:.9rem!important}
+}
+
+/* ===== 35. Site-wide button/click micro-interactions ===== */
+:root{
+  --gl-ease-spring:cubic-bezier(.34,1.56,.64,1);
+  --gl-ease-smooth:cubic-bezier(.16,1,.3,1);
+}
+
+/* Shared transition + press feedback for every clickable control on the site */
+.button,.explore-all,.project-link,.cta-chip,.filter-button,.text-link,
+.footer-social a,.team-nav,.faq-item summary,.wa-float,
+.hero-actions .button-primary,.hero-actions .button-secondary,
+#lets-talk-btn,.nav-mobile-cta .button-primary.compact{
+  transition:
+    transform .22s var(--gl-ease-spring),
+    box-shadow .22s var(--gl-ease-smooth),
+    filter .18s ease,
+    background-color .18s ease,
+    border-color .18s ease!important;
+}
+
+/* Rectangular CTAs / links: a livelier lift + growing shadow on hover */
+.button:hover,.explore-all:hover,.project-link:hover,.cta-chip:hover,
+.text-link:hover{
+  transform:translateY(-3px)!important;
+  box-shadow:0 14px 26px -14px rgba(16,32,51,.45)!important;
+  filter:brightness(1.05);
+}
+.button:active,.explore-all:active,.project-link:active,.cta-chip:active,
+.text-link:active{
+  transform:translateY(-1px) scale(.97)!important;
+  box-shadow:0 4px 10px -6px rgba(16,32,51,.35)!important;
+  transition-duration:.09s!important;
+}
+
+/* Work-page category filters: hover lift + press */
+.filter-button:hover{transform:translateY(-2px)}
+.filter-button:active{transform:translateY(0) scale(.95)}
+
+/* Round icon controls: footer socials, carousel arrows, WhatsApp float */
+.footer-social a:hover,.team-nav:hover{
+  transform:translateY(-3px) scale(1.06)!important;
+  box-shadow:0 12px 22px -10px rgba(16,32,51,.5)!important;
+}
+.footer-social a:active,.team-nav:active{
+  transform:translateY(0) scale(.92)!important;
+  transition-duration:.09s!important;
+}
+.wa-float:hover{transform:translateY(-3px) scale(1.08)!important}
+.wa-float:active{transform:translateY(0) scale(.94)!important;transition-duration:.09s!important}
+
+/* FAQ rows: a soft highlight on hover instead of a static row */
+.faq-item summary:hover{background:color-mix(in srgb,var(--surface,#eef5f8) 70%,#fff)}
+.faq-item summary:active{transform:scale(.995)}
+
+/* Hero + "Let's Talk" buttons keep their own bespoke animation (circle sweep,
+   label resize) — just give them the same lively press feedback on click. */
+.hero-actions .button-primary:active,.hero-actions .button-secondary:active,
+#lets-talk-btn:active,.nav-mobile-cta .button-primary.compact:active{
+  transform:scale(.96)!important;
+  transition-duration:.09s!important;
+}
+
+@media(prefers-reduced-motion:reduce){
+  .button,.explore-all,.project-link,.cta-chip,.filter-button,.text-link,
+  .footer-social a,.team-nav,.faq-item summary,.wa-float{
+    transition:none!important;
+  }
+}
+
+/* ===== 36. Ambient shine sweep on box-style buttons (not FAQ rows, not Work-page filters) ===== */
+@keyframes gl-idle-sheen{
+  0%{transform:translateX(-120%) skewX(-18deg);opacity:0}
+  22%{opacity:.42}
+  48%,100%{transform:translateX(150%) skewX(-18deg);opacity:0}
+}
+
+/* give cta-chip its own sheen box (button/explore-all already have one from
+   the earlier premium-motion pass) */
+.cta-chip{position:relative;overflow:hidden;isolation:isolate}
+.cta-chip::before{
+  content:"";position:absolute;inset:-35% auto -35% 0;width:38%;
+  pointer-events:none;z-index:1;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.5),transparent);
+  opacity:0;
+}
+
+@media(prefers-reduced-motion:no-preference){
+  /* idle, always-on sweep */
+  .button::before,.explore-all::before,.cta-chip::before{
+    animation:gl-idle-sheen 5.5s var(--gl-ease-smooth) infinite;
+  }
+  /* on hover, swap to the brighter, faster glint already used elsewhere on the site */
+  .button:hover::before,.explore-all:hover::before,.cta-chip:hover::before{
+    animation:gl-button-glint .72s var(--gl-ease-smooth) both!important;
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  .button::before,.explore-all::before,.cta-chip::before{animation:none!important}
 }
