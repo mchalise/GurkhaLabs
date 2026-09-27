@@ -560,8 +560,11 @@ footer.site-footer .footer-social svg{width:1.2rem!important;height:1.2rem!impor
     max-width:680px!important;object-fit:contain!important;
   }
 }
+@media(min-width:768px){
+  .hero-art>img{max-width:760px!important}
+}
 @media(min-width:1280px){
-  .hero-art>img{max-width:720px!important}
+  .hero-art>img{max-width:880px!important}
 }
 
 /* ===== 33. Hero: illustration a bit bigger, and tighten vertical rhythm
@@ -747,4 +750,53 @@ footer.site-footer .footer-social svg{width:1.2rem!important;height:1.2rem!impor
   transform:translateY(-50%) scale(.9)!important;
   box-shadow:0 4px 10px -6px rgba(16,32,51,.35)!important;
   transition-duration:.09s!important;
+}
+
+/* ===== 42. Hero illustration: bigger again (overrides sections 32/33) ===== */
+@media(min-width:768px){
+  .hero-art>img{max-width:820px!important}
+}
+@media(min-width:1280px){
+  .hero-art>img{max-width:900px!important}
+}
+
+/* ===== 41. Wave-divider seam, take 3 — NO shape-rendering change this time
+   (that was the mistake last round: crispEdges disabled anti-aliasing for
+   the whole curve, which is why it looked blocky/jagged instead of smooth).
+   This just traces a thin matching-color line exactly along the curve's own
+   path, so it follows the wave's shape everywhere instead of a flat strip. ===== */
+.wave-divider svg path{
+  stroke:#0b2338;
+  stroke-width:1px;
+  vector-effect:non-scaling-stroke;
+  paint-order:stroke fill;
+}
+
+/* ===== 43. Agentic Engineering diagram: brighten the connector lines,
+   endpoint dots, and floating particles so they read clearly against the
+   dark navy background. Only touches the STATIC/ambient elements — the
+   animated traveling-light pulses along the lines are left alone since
+   they're already fully bright at their peak. ===== */
+
+/* faint gradient-stroke lines fanning from the hub down to each card */
+.orch-panel svg stop[stop-color="#2a6995"]{stop-opacity:.85!important}
+.orch-panel svg stop[stop-color="#2b7fa8"]{stop-opacity:.4!important}
+
+/* the flat-color background lines (e.g. the wavy connector under the cards) —
+   excludes the dashed, animated pulse-paths so their travelling glow is untouched */
+.orch-panel svg path[stroke="#2a6995"]:not([stroke-dasharray]){
+  stroke-opacity:.45!important;
+}
+
+/* small dot markers along that connector line */
+.orch-panel svg circle[fill="#2a6995"]{fill-opacity:.7!important}
+
+/* rotating rings around the hub icon */
+.orch-orbit{border-color:color-mix(in srgb,var(--accent) 55%,transparent)!important}
+
+/* ambient floating sparkle dots — redefining the same keyframe name so it
+   replaces the original (opacity .35–.75) with a brighter range (.65–1) */
+@keyframes orchFloat{
+  0%,100%{transform:translateY(0);opacity:.65}
+  50%{transform:translateY(-10px);opacity:1}
 }
