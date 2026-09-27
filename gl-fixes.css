@@ -748,3 +748,25 @@ footer.site-footer .footer-social svg{width:1.2rem!important;height:1.2rem!impor
   box-shadow:0 4px 10px -6px rgba(16,32,51,.35)!important;
   transition-duration:.09s!important;
 }
+
+/* ===== 41. Stronger fix for the wave-divider seam on iPhone/Safari mobile
+   (section 38's -3px overlap wasn't enough on some devices, so this adds
+   a solid safety strip in the exact navy color, plus a bigger overlap) ===== */
+@media(max-width:900px){
+  .wave-divider{margin-top:-6px!important;position:relative}
+  .wave-divider::before{
+    content:"";position:absolute;top:0;left:0;right:0;height:8px;
+    background:var(--gl-navy,#0b2338);z-index:1;pointer-events:none;
+  }
+}
+
+/* ===== 41. Kill the hairline seam along the wave-divider curve on iOS/Safari
+   (anti-aliasing fringe where the dark and light SVG shapes meet — a
+   different issue from the section-boundary gap fixed earlier) ===== */
+.wave-divider svg{shape-rendering:crispEdges}
+.wave-divider svg path{
+  stroke:#0b2338;
+  stroke-width:1.5px;
+  vector-effect:non-scaling-stroke;
+  paint-order:stroke fill;
+}
