@@ -395,7 +395,8 @@ footer.site-footer .footer-social svg{width:1.4rem;height:1.4rem}
 .logo-band-track .asset-slot{
   width:auto!important;height:var(--logo-h)!important;flex:0 0 auto!important;
 }
-.logo-band-track .asset-slot[data-label$="mysecondteacher.png"]{height:calc(var(--logo-h) * 1.2)!important}
+.logo-band-track .asset-slot[data-label$="mstn.png"]{height:calc(var(--logo-h) * 1.2)!important}
+.logo-band-track .asset-slot[data-label$="mstg.png"]{height:calc(var(--logo-h) * 1.2)!important}
 .logo-band-track .asset-slot>img,
 .logo-band-track .asset-slot>svg{
   width:auto!important;height:100%!important;max-width:none!important;max-height:none!important;
@@ -702,4 +703,48 @@ footer.site-footer .footer-social svg{width:1.2rem!important;height:1.2rem!impor
 }
 @media(prefers-reduced-motion:reduce){
   .button::before,.explore-all::before,.cta-chip::before{animation:none!important}
+}
+
+/* ===== 37. Mobile: remove the light gap between the dark logo band and
+   the "Founding engineer to Series B" section right after it =====
+   (that section has its own inline top padding for spacing on desktop,
+   which looks fine there but reads as an odd empty strip on narrow screens) */
+@media(max-width:767px){
+  section[aria-label="From founding engineer to Series B"]{
+    padding-top:22px!important;
+  }
+}
+
+/* ===== 38. Mobile: fix the hairline seam on the wave divider above
+   "Why Choose Us" (visible where the dark terminal box meets the wave) ===== */
+@media(max-width:767px){
+  .wave-divider{margin-top:-3px!important}
+}
+
+/* ===== 39. Fix the carousel-arrow / round-icon "press" feel —
+   no more visible drop/jump on click, and no gray tap-flash on mobile ===== */
+.team-nav,.footer-social a,.wa-float,
+.button,.explore-all,.cta-chip,.filter-button,.project-link,.text-link{
+  -webkit-tap-highlight-color:transparent;
+}
+.team-nav:active,.footer-social a:active,.wa-float:active{
+  transform:scale(.9)!important;
+  box-shadow:0 4px 10px -6px rgba(16,32,51,.35)!important;
+  transition-duration:.09s!important;
+}
+
+/* ===== 40. Real fix for the arrow "dropping" on hover/click =====
+   The arrow is vertically centered using transform:translateY(-50%).
+   Our earlier hover/active rules set their own `transform` value, which
+   REPLACES that centering transform entirely (transform doesn't stack
+   across rules) — that's why clicking made it jump down. Chaining both
+   translateY() values together keeps the centering AND the press effect. */
+.team-nav:hover{
+  transform:translateY(-50%) translateY(-3px) scale(1.06)!important;
+  box-shadow:0 12px 22px -10px rgba(16,32,51,.5)!important;
+}
+.team-nav:active{
+  transform:translateY(-50%) scale(.9)!important;
+  box-shadow:0 4px 10px -6px rgba(16,32,51,.35)!important;
+  transition-duration:.09s!important;
 }
