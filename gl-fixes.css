@@ -760,18 +760,6 @@ footer.site-footer .footer-social svg{width:1.2rem!important;height:1.2rem!impor
   .hero-art>img{max-width:900px!important}
 }
 
-/* ===== 41. Wave-divider seam, take 3 — NO shape-rendering change this time
-   (that was the mistake last round: crispEdges disabled anti-aliasing for
-   the whole curve, which is why it looked blocky/jagged instead of smooth).
-   This just traces a thin matching-color line exactly along the curve's own
-   path, so it follows the wave's shape everywhere instead of a flat strip. ===== */
-.wave-divider svg path{
-  stroke:#0b2338;
-  stroke-width:1px;
-  vector-effect:non-scaling-stroke;
-  paint-order:stroke fill;
-}
-
 /* ===== 43. Agentic Engineering diagram: brighten the connector lines,
    endpoint dots, and floating particles so they read clearly against the
    dark navy background. Only touches the STATIC/ambient elements — the
@@ -799,4 +787,28 @@ footer.site-footer .footer-social svg{width:1.2rem!important;height:1.2rem!impor
 @keyframes orchFloat{
   0%,100%{transform:translateY(0);opacity:.65}
   50%{transform:translateY(-10px);opacity:1}
+}
+
+/* ===== 45. Wave-divider hairline on iPhone/iPad (revised again).
+   The hairline only matters where the wave is DARK. Right over the crest
+   (the tall hill on the left, roughly 24%-34% of the width) the line is
+   light-on-light and invisible anyway — so the 1px navy line now has a gap
+   over exactly that stretch and never touches the crest. Everywhere else it
+   seals the seam. Nothing about the curve itself is restyled.
+   Tuning: if the seam still shows next to the crest, widen the gap's edges
+   inward (e.g. 26% / 32%); if the crest edge looks flat, widen them
+   outward (e.g. 22% / 36%). ===== */
+@media(max-width:1024px){
+  .wave-divider{
+    position:relative;
+    background:linear-gradient(to bottom,#0b2338 0,#0b2338 1px,#eef5f8 1px)!important;
+  }
+  .wave-divider::before{
+    content:"";position:absolute;top:0;left:0;right:0;height:1px;
+    background:linear-gradient(to right,
+      #0b2338 0,#0b2338 24%,
+      transparent 24%,transparent 34%,
+      #0b2338 34%,#0b2338 100%);
+    z-index:1;pointer-events:none;
+  }
 }
