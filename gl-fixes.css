@@ -812,3 +812,83 @@ footer.site-footer .footer-social svg{width:1.2rem!important;height:1.2rem!impor
     z-index:1;pointer-events:none;
   }
 }
+
+
+/* ===== 46. Leadership carousel: "And a Few More — you could be next" card =====
+   Same box as the member cards. The photo becomes a plus badge, and the
+   social-icon row becomes a "Get in touch" link. Uses a NEW class name
+   (.team-join) on purpose so it doesn't pick up the old, unused .team-more
+   styles that are still sitting in the original stylesheet. */
+.team-join .team-plus{
+  width:5rem;height:5rem;border-radius:50%;flex:0 0 auto;
+  border:1px dashed var(--accent);
+  background:radial-gradient(120% 120% at 30% 20%,color-mix(in srgb,var(--accent) 14%,#fff),var(--surface));
+  color:var(--accent);
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:.35rem;
+  box-shadow:0 8px 18px -10px color-mix(in srgb,var(--accent) 55%,transparent),
+             inset 0 1px 0 color-mix(in srgb,#fff 60%,transparent);
+  transition:border-color .25s ease,transform .35s var(--gl-ease-spring,cubic-bezier(.34,1.56,.64,1));
+}
+.team-join .team-plus svg{
+  width:1.9rem;height:1.9rem;
+  transition:transform .35s var(--gl-ease-spring,cubic-bezier(.34,1.56,.64,1));
+}
+.team-join:hover .team-plus{border-style:solid}
+.team-join:hover .team-plus svg{transform:rotate(90deg)}
+
+/* bottom row: same divider + same height as the social-icon row on the other
+   cards, so the dividers line up across the whole carousel */
+.team-join-foot{
+  margin-top:auto;padding-top:.9rem;min-height:calc(2.25rem + .9rem);
+  width:100%;border-top:1px solid var(--border);
+  display:flex;justify-content:center;align-items:center;
+}
+.team-join-link{
+  display:inline-flex;align-items:center;gap:.5rem;
+  padding:.4rem .8rem;border-radius:.6rem;
+  font-size:.9rem;font-weight:600;line-height:1.2;
+  color:var(--gl-blue,#144468);text-decoration:none;
+  transition:color .2s ease,background-color .2s ease;
+}
+.team-join-link svg{width:1em;height:1em;transition:transform .25s ease}
+.team-join-link:hover{color:var(--gl-orange,#b05a29);background:var(--surface)}
+.team-join-link:hover svg{transform:translateX(3px)}
+
+@media(prefers-reduced-motion:reduce){
+  .team-join .team-plus,.team-join .team-plus svg,.team-join-link svg{transition:none}
+  .team-join:hover .team-plus svg,.team-join-link:hover svg{transform:none}
+}
+
+/* ===== 46. "And a Few More" card: pin its link to the bottom, same as the
+   other cards' social icons, so all cards in the row stay lined up ===== */
+@media(min-width:768px){
+  #team .team-more .text-link{margin-top:auto!important}
+}
+
+/* ===== 47. "And a Few More" card: fix background blending into the page,
+   and fix the "Get in touch" hover looking like a floating box ===== */
+
+/* white fill like every other card, dashed border still makes it read as
+   a distinct/placeholder card without disappearing into the section bg */
+#team .team-more{background-color:var(--card,#fff)!important}
+
+/* this link isn't a pill button — it's a plain link with a divider line
+   above it, so give it its own light hover (no lift, no shadow) instead
+   of the box-button treatment, with even padding so the highlight forms
+   a clean rectangle around the text rather than hugging it unevenly */
+#team .team-more .text-link{
+  transform:none!important;
+  box-shadow:none!important;
+  filter:none!important;
+  padding:.85rem 1rem!important;
+  box-sizing:border-box!important;
+}
+#team .team-more .text-link:hover{
+  color:var(--accent,#2a6995)!important;
+  background:color-mix(in srgb,var(--surface,#eef5f8) 70%,#fff);
+}
+#team .team-more .text-link:active{
+  transform:none!important;
+  opacity:.75;
+}
