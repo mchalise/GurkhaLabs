@@ -1,0 +1,8 @@
+# keep deploys small: only the static site ships
+tools/
+node_modules/
+package.json
+package-lock.json
+*.md
+.env
+.env.*
